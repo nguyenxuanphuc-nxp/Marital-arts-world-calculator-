@@ -1,37 +1,89 @@
 name,realmId,rarity,baseGift,baseStats,isKey,isOffering
-Gold Nugget ,1,Uncommon,0.08,0,FALSE,TRUE
-Spirit Jade Shard ,1,Rare,0.14,1,FALSE,TRUE
-Qi Beast Core ,1,Rare,0.14,1,FALSE,TRUE
+Gold Nugget,1,Uncommon,0.08,0,FALSE,TRUE
+Spirit Jade Shard,1,Rare,0.14,1,FALSE,TRUE
+Qi Beast Core,1,Rare,0.14,1,FALSE,TRUE
 Scarback's Broken Tusk,1,Rare,0.14,1,TRUE,TRUE
-River Pearl ,1,Rare,0.14,1,FALSE,TRUE
-Thunderstuck Root ,2,Rare,0.14,1,FALSE,TRUE
-Qi Crystal Shard ,2,Rare,0.14,1,FALSE,TRUE
+River Pearl,1,Rare,0.14,1,FALSE,TRUE
+Thunderstruck Root,2,Rare,0.14,1,FALSE,TRUE
+Qi Crystal Shard,2,Rare,0.14,1,FALSE,TRUE
 Iron-Beak's Hook,2,Rare,0.14,1,TRUE,TRUE
-Maw-jade Shard ,3,Rare,0.14,1,FALSE,TRUE
-Demon Ape Blood ,3,Rare,0.14,1,FALSE,TRUE
+Maw-Jade Shard,3,Rare,0.14,1,FALSE,TRUE
+Demon Ape Blood,3,Rare,0.14,1,FALSE,TRUE
 Tempered Beast Core,3,Epic,0.22,1,FALSE,TRUE
-Spirit Stone ,3,Epic,0.22,1,FALSE,TRUE
-Black Tiger Claw,3,Rare,0.14,1,TRUE,TRUE
+Spirit Stone,3,Epic,0.22,1,FALSE,TRUE
+Black Tiger Claw,2,Rare,0.14,1,TRUE,TRUE
 Beads of the Hollow Heart,3,Epic,0.22,1,TRUE,TRUE
 Shard of Deviated Qi,4,Epic,0.22,1,FALSE,TRUE
-Storm-Heart Jade,4,Rare,0.14,1,TRUE,TRUE
-Crimson Moon Shard,4,Epic,0.22,1,TRUE,TRUE
-Jade Rhino Horn ,4,Epic,0.22,1,FALSE,TRUE
-Qara Ashina's Gold Torque ,5,Rare,0.14,1,FALSE,TRUE
+Storm-Heart Jade,4,Epic,0.22,1,TRUE,TRUE
+Crimson Moon Shard,3,Epic,0.22,1,TRUE,TRUE
+Jade Rhino Horn,4,Epic,0.22,1,FALSE,TRUE
+Qara Ashina's Gold Torque,5,Rare,0.14,1,FALSE,TRUE
 Nine-Lantern Foxfire Bead,5,Epic,0.22,1,TRUE,TRUE
 Khan Temur's Golden Seal,5,Epic,0.22,1,TRUE,TRUE
-Thousand Year Ginseng,5,Mythic,0.46,4,FALSE,TRUE
-Thunderhoof Horn ,6,Rare,0.14,1,FALSE,TRUE
-Unripe Soul Fruit ,6,Epic,0.22,1,FALSE,TRUE
-Roc Matriarch's Plume ,6,Epic,0.22,1,FALSE,TRUE
-Old Thunderhoof's Storm Horn ,6,Epic,0.22,1,TRUE,TRUE
+Thousand-Year Ginseng,5,Mythic,0.46,4,FALSE,TRUE
+Thunderhoof Horn,6,Rare,0.14,1,FALSE,TRUE
+Unripe Soul Fruit,6,Epic,0.22,1,FALSE,TRUE
+Roc Matriarch's Plume,6,Epic,0.22,1,TRUE,TRUE
+Old Thunderhoof's Storm Horn,6,Epic,0.22,1,TRUE,TRUE
 Bark-Ghoul Heartwood,6,Epic,0.22,1,FALSE,TRUE
-Void-Heart Blossom ,6,Legendary,0.32,2,FALSE,TRUE
+Void-Heart Blossom,6,Legendary,0.32,2,FALSE,TRUE
 Kang Bai's Salt-Road Ledger,6,Epic,0.22,1,FALSE,TRUE
-Tianma's Strom Mane ,6,Legendary,0.32,2,FALSE,TRUE
-Storm Qilin Scale ,7,Epic,0.22,1,FALSE,TRUE
+Tianma's Storm Mane,6,Legendary,0.32,2,FALSE,TRUE
+Storm Qilin Scale,7,Epic,0.22,1,FALSE,TRUE
 Withered Titan Marrow,7,Legendary,0.32,2,FALSE,TRUE
-Archivist Wen's Jade Slip ,7,Legendary,0.32,2,FALSE,TRUE
-Kulong's Withered Spine ,7,Mythic,0.46,4,FALSE,TRUE
+Archivist Wen's Jade Slip,7,Legendary,0.32,2,FALSE,TRUE
+Kulong's Withered Spine,7,Mythic,0.46,4,TRUE,TRUE
 Golem Heart-Crystal,7,Epic,0.22,1,FALSE,TRUE
-Heavenly Snow Lotus,4,Epic,0.22,1,FALSE,TRUE
+Heavenly Snow Lotus,3,Epic,0.22,1,FALSE,TRUE
+Moon-Howl Fang,2,Epic,0.22,1,FALSE,TRUE
+Yin Soul Jade,2,Epic,0.22,1,FALSE,TRUE
+Foreman Gou's Tally Stick,3,Rare,0.14,1,FALSE,TRUE
+Burning-Lotus Prayer Beads,3,Epic,0.22,1,FALSE,TRUE
+Crimson Leech Jade,3,Epic,0.22,1,FALSE,TRUE
+Devouring Beast Core,3,Epic,0.22,1,FALSE,TRUE
+Dragon Carp Scale,3,Epic,0.22,1,FALSE,TRUE
+Frost-Plum Hairpin,3,Epic,0.22,1,FALSE,TRUE
+Gourd of Ten Thousand Li,3,Epic,0.22,1,FALSE,TRUE
+Ninth-Hell Mask,3,Epic,0.22,1,FALSE,TRUE
+Red-Blade Debt Tally,3,Epic,0.22,1,FALSE,TRUE
+Seal of the Nameless General,3,Epic,0.22,1,FALSE,TRUE
+Second Dog's Lucky Bowl,3,Epic,0.22,1,FALSE,TRUE
+Snow-Swallow Veil,3,Epic,0.22,1,FALSE,TRUE
+Snow-Thunder Sword Tassel,3,Epic,0.22,1,FALSE,TRUE
+Still-River Taiji Jade,3,Epic,0.22,1,FALSE,TRUE
+Tang Needle Case,3,Epic,0.22,1,FALSE,TRUE
+Corpse King's Pearl,3,Legendary,0.32,2,FALSE,TRUE
+White Tiger Bone,4,Epic,0.22,1,FALSE,TRUE
+Iron Gate's Red Tassel,4,Legendary,0.32,2,FALSE,TRUE
+Wraith Silk,4,Legendary,0.32,2,FALSE,TRUE
+Coiled Horn of the Taotie,4,Mythic,0.46,4,FALSE,TRUE
+Golden Core of the Tiger Elder,4,Mythic,0.46,4,FALSE,TRUE
+Heart of the Deviated,4,Mythic,0.46,4,FALSE,TRUE
+Old Scar Ma's Toll Seal,5,Rare,0.14,1,FALSE,TRUE
+Reed Jiao Fang,5,Rare,0.14,1,FALSE,TRUE
+Heart-Guarding Mirror,5,Epic,0.22,1,FALSE,TRUE
+Magistrate Yan's Unsent Memorial,6,Rare,0.14,1,FALSE,TRUE
+Clapper of the Split Pagoda,6,Epic,0.22,1,FALSE,TRUE
+The Blind Jiao's Star Pearl,6,Epic,0.22,1,FALSE,TRUE
+Mad Disciple's Blood Qi,7,Rare,0.14,1,FALSE,TRUE
+Gu Wuyan's Withering Gourd,7,Epic,0.22,1,FALSE,TRUE
+Heart of the Fallen Star,7,Epic,0.22,1,FALSE,TRUE
+Horn of the Aoyin,7,Epic,0.22,1,FALSE,TRUE
+Blood-Veined Jade,7,Legendary,0.32,2,FALSE,TRUE
+Shard of the Last Ninefold Blade,7,Legendary,0.32,2,FALSE,TRUE
+Shard of the Porcelain Face,7,Legendary,0.32,2,FALSE,TRUE
+Ember Eye of the Aoyin,7,Mythic,0.46,4,FALSE,TRUE
+Heart-Demon Core,7,Mythic,0.46,4,TRUE,TRUE
+A Link of the Ninefold Shackle,8,Epic,0.22,1,FALSE,TRUE
+Cinder-Mane's Rift-Ember Fang,8,Epic,0.22,1,FALSE,TRUE
+Fen Zhao's Unquenched Lantern,8,Epic,0.22,1,FALSE,TRUE
+Spine-Bone of the War-Qilin,8,Epic,0.22,1,FALSE,TRUE
+The Ninth Banner's Red Tassel,8,Epic,0.22,1,FALSE,TRUE
+Bonewrath's Violet-Fire Horn,8,Legendary,0.32,2,FALSE,TRUE
+Heart of the Burning Vein,8,Legendary,0.32,2,TRUE,FALSE
+Lei Zhen's War Drumstick,8,Legendary,0.32,2,FALSE,TRUE
+The Ninth Banner's Seal,8,Legendary,0.32,2,TRUE,FALSE
+The Black Banner's Tiger Tally,9,Legendary,0.32,2,FALSE,TRUE
+Yu Lian's Violet-Tear Hairpin,9,Legendary,0.32,2,FALSE,TRUE
+Heart of Grey Ash,9,Mythic,0.46,4,FALSE,TRUE
+The Ninth Gate Mandate,9,Mythic,0.46,4,TRUE,FALSE

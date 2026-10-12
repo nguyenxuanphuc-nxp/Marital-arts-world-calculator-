@@ -45,7 +45,7 @@
     "isOffering":true
   },
   {
-    "name":"Thunderstuck Root",
+    "name":"Thunderstruck Root",
     "realmId":2,
     "rarity":"Rare",
     "baseGift":0.14,
@@ -72,7 +72,7 @@
     "isOffering":true
   },
   {
-    "name":"Maw-jade Shard",
+    "name":"Maw-Jade Shard",
     "realmId":3,
     "rarity":"Rare",
     "baseGift":0.14,
@@ -109,7 +109,7 @@
   },
   {
     "name":"Black Tiger Claw",
-    "realmId":3,
+    "realmId":2,
     "rarity":"Rare",
     "baseGift":0.14,
     "baseStats":1,
@@ -137,15 +137,15 @@
   {
     "name":"Storm-Heart Jade",
     "realmId":4,
-    "rarity":"Rare",
-    "baseGift":0.14,
+    "rarity":"Epic",
+    "baseGift":0.22,
     "baseStats":1,
     "isKey":true,
     "isOffering":true
   },
   {
     "name":"Crimson Moon Shard",
-    "realmId":4,
+    "realmId":3,
     "rarity":"Epic",
     "baseGift":0.22,
     "baseStats":1,
@@ -189,7 +189,7 @@
     "isOffering":true
   },
   {
-    "name":"Thousand Year Ginseng",
+    "name":"Thousand-Year Ginseng",
     "realmId":5,
     "rarity":"Mythic",
     "baseGift":0.46,
@@ -221,7 +221,7 @@
     "rarity":"Epic",
     "baseGift":0.22,
     "baseStats":1,
-    "isKey":false,
+    "isKey":true,
     "isOffering":true
   },
   {
@@ -261,7 +261,7 @@
     "isOffering":true
   },
   {
-    "name":"Tianma's Strom Mane",
+    "name":"Tianma's Storm Mane",
     "realmId":6,
     "rarity":"Legendary",
     "baseGift":0.32,
@@ -302,7 +302,7 @@
     "rarity":"Mythic",
     "baseGift":0.46,
     "baseStats":4,
-    "isKey":false,
+    "isKey":true,
     "isOffering":true
   },
   {
@@ -316,11 +316,479 @@
   },
   {
     "name":"Heavenly Snow Lotus",
+    "realmId":3,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Moon-Howl Fang",
+    "realmId":2,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Yin Soul Jade",
+    "realmId":2,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Foreman Gou's Tally Stick",
+    "realmId":3,
+    "rarity":"Rare",
+    "baseGift":0.14,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Burning-Lotus Prayer Beads",
+    "realmId":3,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Crimson Leech Jade",
+    "realmId":3,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Devouring Beast Core",
+    "realmId":3,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Dragon Carp Scale",
+    "realmId":3,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Frost-Plum Hairpin",
+    "realmId":3,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Gourd of Ten Thousand Li",
+    "realmId":3,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Ninth-Hell Mask",
+    "realmId":3,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Red-Blade Debt Tally",
+    "realmId":3,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Seal of the Nameless General",
+    "realmId":3,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Second Dog's Lucky Bowl",
+    "realmId":3,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Snow-Swallow Veil",
+    "realmId":3,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Snow-Thunder Sword Tassel",
+    "realmId":3,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Still-River Taiji Jade",
+    "realmId":3,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Tang Needle Case",
+    "realmId":3,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Corpse King's Pearl",
+    "realmId":3,
+    "rarity":"Legendary",
+    "baseGift":0.32,
+    "baseStats":2,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"White Tiger Bone",
     "realmId":4,
     "rarity":"Epic",
     "baseGift":0.22,
     "baseStats":1,
     "isKey":false,
     "isOffering":true
+  },
+  {
+    "name":"Iron Gate's Red Tassel",
+    "realmId":4,
+    "rarity":"Legendary",
+    "baseGift":0.32,
+    "baseStats":2,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Wraith Silk",
+    "realmId":4,
+    "rarity":"Legendary",
+    "baseGift":0.32,
+    "baseStats":2,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Coiled Horn of the Taotie",
+    "realmId":4,
+    "rarity":"Mythic",
+    "baseGift":0.46,
+    "baseStats":4,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Golden Core of the Tiger Elder",
+    "realmId":4,
+    "rarity":"Mythic",
+    "baseGift":0.46,
+    "baseStats":4,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Heart of the Deviated",
+    "realmId":4,
+    "rarity":"Mythic",
+    "baseGift":0.46,
+    "baseStats":4,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Old Scar Ma's Toll Seal",
+    "realmId":5,
+    "rarity":"Rare",
+    "baseGift":0.14,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Reed Jiao Fang",
+    "realmId":5,
+    "rarity":"Rare",
+    "baseGift":0.14,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Heart-Guarding Mirror",
+    "realmId":5,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Magistrate Yan's Unsent Memorial",
+    "realmId":6,
+    "rarity":"Rare",
+    "baseGift":0.14,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Clapper of the Split Pagoda",
+    "realmId":6,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"The Blind Jiao's Star Pearl",
+    "realmId":6,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Mad Disciple's Blood Qi",
+    "realmId":7,
+    "rarity":"Rare",
+    "baseGift":0.14,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Gu Wuyan's Withering Gourd",
+    "realmId":7,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Heart of the Fallen Star",
+    "realmId":7,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Horn of the Aoyin",
+    "realmId":7,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Blood-Veined Jade",
+    "realmId":7,
+    "rarity":"Legendary",
+    "baseGift":0.32,
+    "baseStats":2,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Shard of the Last Ninefold Blade",
+    "realmId":7,
+    "rarity":"Legendary",
+    "baseGift":0.32,
+    "baseStats":2,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Shard of the Porcelain Face",
+    "realmId":7,
+    "rarity":"Legendary",
+    "baseGift":0.32,
+    "baseStats":2,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Ember Eye of the Aoyin",
+    "realmId":7,
+    "rarity":"Mythic",
+    "baseGift":0.46,
+    "baseStats":4,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Heart-Demon Core",
+    "realmId":7,
+    "rarity":"Mythic",
+    "baseGift":0.46,
+    "baseStats":4,
+    "isKey":true,
+    "isOffering":true
+  },
+  {
+    "name":"A Link of the Ninefold Shackle",
+    "realmId":8,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Cinder-Mane's Rift-Ember Fang",
+    "realmId":8,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Fen Zhao's Unquenched Lantern",
+    "realmId":8,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Spine-Bone of the War-Qilin",
+    "realmId":8,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"The Ninth Banner's Red Tassel",
+    "realmId":8,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Bonewrath's Violet-Fire Horn",
+    "realmId":8,
+    "rarity":"Legendary",
+    "baseGift":0.32,
+    "baseStats":2,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Heart of the Burning Vein",
+    "realmId":8,
+    "rarity":"Legendary",
+    "baseGift":0.32,
+    "baseStats":2,
+    "isKey":true,
+    "isOffering":false
+  },
+  {
+    "name":"Lei Zhen's War Drumstick",
+    "realmId":8,
+    "rarity":"Legendary",
+    "baseGift":0.32,
+    "baseStats":2,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"The Ninth Banner's Seal",
+    "realmId":8,
+    "rarity":"Legendary",
+    "baseGift":0.32,
+    "baseStats":2,
+    "isKey":true,
+    "isOffering":false
+  },
+  {
+    "name":"The Black Banner's Tiger Tally",
+    "realmId":9,
+    "rarity":"Legendary",
+    "baseGift":0.32,
+    "baseStats":2,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Yu Lian's Violet-Tear Hairpin",
+    "realmId":9,
+    "rarity":"Legendary",
+    "baseGift":0.32,
+    "baseStats":2,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Heart of Grey Ash",
+    "realmId":9,
+    "rarity":"Mythic",
+    "baseGift":0.46,
+    "baseStats":4,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"The Ninth Gate Mandate",
+    "realmId":9,
+    "rarity":"Mythic",
+    "baseGift":0.46,
+    "baseStats":4,
+    "isKey":true,
+    "isOffering":false
   }
 ]
