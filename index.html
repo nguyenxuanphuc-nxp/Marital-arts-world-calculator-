@@ -280,26 +280,33 @@
 
   let items = [];
 
-  // ==========================================
+  // ===================================================
   // INITIALIZATION
-  // ==========================================
+  // ===================================================
 
   async function loadItemsAndInit() {
     try {
       const response = await fetch('items.json');
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
       items = await response.json();
+      console.log("Successfully loaded items from items.json:", items);
     } catch (error) {
+      console.warn("Could not load items.json, falling back to minimal default item list:", error);
+      // Minimal fallback so dropdowns never break if fetch fails
       items = [
-        { name: "None", realmId: 1, rarity: "Uncommon", baseGift: 0.00, baseStats: 0 },
-        { name: "Dragon Jade", realmId: 1, rarity: "Rare", baseGift: 0.14, baseStats: 1 },
-        { name: "Spirit Core", realmId: 2, rarity: "Epic", baseGift: 0.22, baseStats: 1 },
-        { name: "Phoenix Feather", realmId: 2, rarity: "Epic", baseGift: 0.22, baseStats: 1 },
-        { name: "Immortal Herb", realmId: 3, rarity: "Legendary", baseGift: 0.32, baseStats: 2 },
-        { name: "Emperor Artifact", realmId: 4, rarity: "Mythic", baseGift: 0.46, baseStats: 4 }
-      ];
+          { name: "None", realmId: 1, rarity: "Uncommon", baseGift: 0.00, baseStats: 0, isKey: false, isOffering: false }
+        ];
+      }
+  
+      // Always include a default "None" option if it's missing from your database
+      if (!items.some(item => item.name === "None")) {
+        items.unshift({ name: "None", realmId: 1, rarity: "Uncommon", baseGift: 0.00, baseStats: 0, isKey: false, isOffering: false });
+      }
+
+      initDropdowns();
     }
-    initDropdowns();
-  }
 
   function initDropdowns() {
     const realmSelect = document.getElementById("currentRealm");
