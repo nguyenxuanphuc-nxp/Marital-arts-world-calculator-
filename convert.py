@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Load CSV
-df = pd.read_csv("Item list - Item list example.csv")
+df = pd.read_csv("Martial arts world treasure list - Item list.csv")
 # Standardize column names to camelCase
 df = df.rename(columns={"realmid": "realmId", "iskey": "isKey", "isoffering": "isOffering"})
 # Clean column headers (removes leading/trailing spaces from "realmId ", "name ", etc.)
