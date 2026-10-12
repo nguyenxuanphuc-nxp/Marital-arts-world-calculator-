@@ -355,12 +355,14 @@
     return "Dao";
   }
 
-  function getRealmPenaltyMult(itemRealmId, currRealmId) {
-    const diff = currRealmId - itemRealmId;
-    if (diff <= 0) return 1.0;    // Current or higher realm: 100%
-    if (diff === 1) return 0.65;  // 1 realm below: -35%
-    if (diff === 2) return 0.30;  // 2 realms below: -70%
-    return 0.0;                   // 3+ realms below: 0%
+  function getRealmModifierMult(itemRealmId, currRealmId) {
+    const diff = itemRealmId - currRealmId;
+    if (diff === 2) return 1.50;   // 2 Realms Above: +50%
+    if (diff === 1) return 1.25;   // 1 Realm Above: +25%
+    if (diff === 0) return 1.00;   // Same Realm: Normal
+    if (diff === -1) return 0.65;  // 1 Realm Below: -35%
+    if (diff === -2) return 0.30;  // 2 Realms Below: -70%
+    return 0.00;                  // 3+ Realms Below: 0%
   }
 
   // ==========================================
@@ -399,7 +401,7 @@
       }
     });
 
-    // 1. Calculate Key Items Raw Stats
+    // 1. Calculate Key Items Raw Stats (Halved at 50% relative to offerings)
     const key1Grade = document.getElementById("key1Grade").value;
     const key2Grade = document.getElementById("key2Grade").value;
 
@@ -409,7 +411,10 @@
     let rawKeyStats = 0.5 * ((k1Obj.baseStats * gradeMultipliers[key1Grade].statMult) + 
                             (k2Obj.baseStats * gradeMultipliers[key2Grade].statMult));
 
-    // 2. Calculate Offerings Raw Stats with Realm Penalty
+    let keyGiftBonus = 0.5 * ((k1Obj.baseGift * gradeMultipliers[key1Grade].giftMult) + 
+                             (k2Obj.baseGift * gradeMultipliers[key2Grade].giftMult));
+
+    // 2. Calculate Offerings Raw Stats with Realm Modifier (+50%, +25%, 0%, -35%, -70%)
     const off1Name = document.getElementById("offering1").value;
     const off1Grade = document.getElementById("off1Grade").value;
     const off2Name = document.getElementById("offering2").value;
@@ -421,13 +426,13 @@
     let o2Obj = getItemObj(off2Name);
     let o3Obj = getItemObj(off3Name);
 
-    let p1 = getRealmPenaltyMult(o1Obj.realmId ?? o1Obj.realmid ?? currRealmId, currRealmId);
-    let p2 = getRealmPenaltyMult(o2Obj.realmId ?? o2Obj.realmid ?? currRealmId, currRealmId);
-    let p3 = getRealmPenaltyMult(o3Obj.realmId ?? o3Obj.realmid ?? currRealmId, currRealmId);
+    let m1 = getRealmModifierMult(o1Obj.realmId ?? o1Obj.realmid ?? currRealmId, currRealmId);
+    let m2 = getRealmModifierMult(o2Obj.realmId ?? o2Obj.realmid ?? currRealmId, currRealmId);
+    let m3 = getRealmModifierMult(o3Obj.realmId ?? o3Obj.realmid ?? currRealmId, currRealmId);
 
-    let rawOfferingStats = (o1Obj.baseStats * gradeMultipliers[off1Grade].statMult * p1) +
-                           (o2Obj.baseStats * gradeMultipliers[off2Grade].statMult * p2) +
-                           (o3Obj.baseStats * gradeMultipliers[off3Grade].statMult * p3);
+    let rawOfferingStats = (o1Obj.baseStats * gradeMultipliers[off1Grade].statMult * m1) +
+                           (o2Obj.baseStats * gradeMultipliers[off2Grade].statMult * m2) +
+                           (o3Obj.baseStats * gradeMultipliers[off3Grade].statMult * m3);
 
     // Combine Key + Offering into Diminishing Pool
     let combinedRawStats = rawKeyStats + rawOfferingStats;
@@ -440,11 +445,11 @@
     const pillGrade = document.getElementById("pillGrade").value;
     let pillGiftBonus = pillGradeGifts[pillGrade];
 
-    let offeringsGift = (o1Obj.baseGift * gradeMultipliers[off1Grade].giftMult * p1) +
-                        (o2Obj.baseGift * gradeMultipliers[off2Grade].giftMult * p2) +
-                        (o3Obj.baseGift * gradeMultipliers[off3Grade].giftMult * p3);
+    let offeringsGift = (o1Obj.baseGift * gradeMultipliers[off1Grade].giftMult * m1) +
+                        (o2Obj.baseGift * gradeMultipliers[off2Grade].giftMult * m2) +
+                        (o3Obj.baseGift * gradeMultipliers[off3Grade].giftMult * m3);
 
-    let uncappedGiftMultiplier = 1.0 + pillGiftBonus + offeringsGift;
+    let uncappedGiftMultiplier = 1.0 + pillGiftBonus + keyGiftBonus + offeringsGift;
 
     const qiSpotIdx = parseInt(document.getElementById("qiSpot").value);
     const selectedQiSpot = qiSpots[qiSpotIdx];
