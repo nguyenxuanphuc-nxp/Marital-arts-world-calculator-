@@ -369,10 +369,10 @@
     document.getElementById("keyItem1").innerText = currRealmObj.key1;
     document.getElementById("keyItem2").innerText = currRealmObj.key2;
 
-    // Filter Offerings (+2 Major Realms max + always allow "None")
+    // Filter Offerings (+2 Major Realms max + always allow "None") 
     const validOfferings = items.filter(item => 
       item.name === "None" || 
-      (item.realmId >= currRealmId && item.realmId <= currRealmId + 2)
+      (item.isOffering && item.realmId >= currRealmId && item.realmId <= currRealmId + 2)
     );
 
     ["offering1", "offering2", "offering3"].forEach(id => {

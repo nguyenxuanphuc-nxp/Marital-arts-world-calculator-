@@ -1,7 +1,7 @@
 [
   {
     "name":"Scarback's Broken Tusk",
-    "realmid ":2,
+    "realmId":2,
     "rarity":"Rare",
     "baseGift":0.14,
     "baseStats":1,
@@ -10,7 +10,7 @@
   },
   {
     "name":"Iron-Beak's Hook",
-    "realmid ":3,
+    "realmId":3,
     "rarity":"Rare",
     "baseGift":0.14,
     "baseStats":1,
@@ -19,7 +19,7 @@
   },
   {
     "name":"Black Tiger Claw",
-    "realmid ":4,
+    "realmId":4,
     "rarity":"Rare",
     "baseGift":0.14,
     "baseStats":1,
@@ -28,7 +28,7 @@
   },
   {
     "name":"Beads of the Hollow Heart",
-    "realmid ":4,
+    "realmId":4,
     "rarity":"Epic",
     "baseGift":0.22,
     "baseStats":1,
@@ -37,7 +37,7 @@
   },
   {
     "name":"Storm-Heart Jade",
-    "realmid ":5,
+    "realmId":5,
     "rarity":"Rare",
     "baseGift":0.14,
     "baseStats":1,
@@ -46,7 +46,7 @@
   },
   {
     "name":"Crimson Moon Shard",
-    "realmid ":5,
+    "realmId":5,
     "rarity":"Epic",
     "baseGift":0.22,
     "baseStats":1,
@@ -55,7 +55,7 @@
   },
   {
     "name":"Nine-Lantern Foxfire Bead",
-    "realmid ":6,
+    "realmId":6,
     "rarity":"Epic",
     "baseGift":0.22,
     "baseStats":1,
@@ -64,7 +64,7 @@
   },
   {
     "name":"Khan Temur's Golden Seal",
-    "realmid ":6,
+    "realmId":6,
     "rarity":"Epic",
     "baseGift":0.22,
     "baseStats":1,
