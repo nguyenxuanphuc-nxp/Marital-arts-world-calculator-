@@ -1,6 +1,69 @@
 [
   {
+    "name":"Gold Nugget",
+    "realmId":1,
+    "rarity":"Uncommon",
+    "baseGift":0.08,
+    "baseStats":0,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Spirit Jade Shard",
+    "realmId":1,
+    "rarity":"Rare",
+    "baseGift":0.14,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Qi Beast Core",
+    "realmId":1,
+    "rarity":"Rare",
+    "baseGift":0.14,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
     "name":"Scarback's Broken Tusk",
+    "realmId":1,
+    "rarity":"Rare",
+    "baseGift":0.14,
+    "baseStats":1,
+    "isKey":true,
+    "isOffering":true
+  },
+  {
+    "name":"River Pearl",
+    "realmId":1,
+    "rarity":"Rare",
+    "baseGift":0.14,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Thunderstuck Root",
+    "realmId":2,
+    "rarity":"Rare",
+    "baseGift":0.14,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Qi Crystal Shard",
+    "realmId":2,
+    "rarity":"Rare",
+    "baseGift":0.14,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Iron-Beak's Hook",
     "realmId":2,
     "rarity":"Rare",
     "baseGift":0.14,
@@ -9,7 +72,43 @@
     "isOffering":true
   },
   {
-    "name":"Iron-Beak's Hook",
+    "name":"Maw-jade Shard",
+    "realmId":3,
+    "rarity":"Rare",
+    "baseGift":0.14,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Demon Ape Blood",
+    "realmId":3,
+    "rarity":"Rare",
+    "baseGift":0.14,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Tempered Beast Core",
+    "realmId":3,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Spirit Stone",
+    "realmId":3,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Black Tiger Claw",
     "realmId":3,
     "rarity":"Rare",
     "baseGift":0.14,
@@ -18,17 +117,8 @@
     "isOffering":true
   },
   {
-    "name":"Black Tiger Claw",
-    "realmId":4,
-    "rarity":"Rare",
-    "baseGift":0.14,
-    "baseStats":1,
-    "isKey":true,
-    "isOffering":true
-  },
-  {
     "name":"Beads of the Hollow Heart",
-    "realmId":4,
+    "realmId":3,
     "rarity":"Epic",
     "baseGift":0.22,
     "baseStats":1,
@@ -36,8 +126,17 @@
     "isOffering":true
   },
   {
+    "name":"Shard of Deviated Qi",
+    "realmId":4,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
     "name":"Storm-Heart Jade",
-    "realmId":5,
+    "realmId":4,
     "rarity":"Rare",
     "baseGift":0.14,
     "baseStats":1,
@@ -46,6 +145,33 @@
   },
   {
     "name":"Crimson Moon Shard",
+    "realmId":4,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":true,
+    "isOffering":true
+  },
+  {
+    "name":"Jade Rhino Horn",
+    "realmId":4,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Qara Ashina's Gold Torque",
+    "realmId":5,
+    "rarity":"Rare",
+    "baseGift":0.14,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Nine-Lantern Foxfire Bead",
     "realmId":5,
     "rarity":"Epic",
     "baseGift":0.22,
@@ -54,7 +180,52 @@
     "isOffering":true
   },
   {
-    "name":"Nine-Lantern Foxfire Bead",
+    "name":"Khan Temur's Golden Seal",
+    "realmId":5,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":true,
+    "isOffering":true
+  },
+  {
+    "name":"Thousand Year Ginseng",
+    "realmId":5,
+    "rarity":"Mythic",
+    "baseGift":0.46,
+    "baseStats":4,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Thunderhoof Horn",
+    "realmId":6,
+    "rarity":"Rare",
+    "baseGift":0.14,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Unripe Soul Fruit",
+    "realmId":6,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Roc Matriarch's Plume",
+    "realmId":6,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Old Thunderhoof's Storm Horn",
     "realmId":6,
     "rarity":"Epic",
     "baseGift":0.22,
@@ -63,12 +234,93 @@
     "isOffering":true
   },
   {
-    "name":"Khan Temur's Golden Seal",
+    "name":"Bark-Ghoul Heartwood",
     "realmId":6,
     "rarity":"Epic",
     "baseGift":0.22,
     "baseStats":1,
-    "isKey":true,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Void-Heart Blossom",
+    "realmId":6,
+    "rarity":"Legendary",
+    "baseGift":0.32,
+    "baseStats":2,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Kang Bai's Salt-Road Ledger",
+    "realmId":6,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Tianma's Strom Mane",
+    "realmId":6,
+    "rarity":"Legendary",
+    "baseGift":0.32,
+    "baseStats":2,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Storm Qilin Scale",
+    "realmId":7,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Withered Titan Marrow",
+    "realmId":7,
+    "rarity":"Legendary",
+    "baseGift":0.32,
+    "baseStats":2,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Archivist Wen's Jade Slip",
+    "realmId":7,
+    "rarity":"Legendary",
+    "baseGift":0.32,
+    "baseStats":2,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Kulong's Withered Spine",
+    "realmId":7,
+    "rarity":"Mythic",
+    "baseGift":0.46,
+    "baseStats":4,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Golem Heart-Crystal",
+    "realmId":7,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Heavenly Snow Lotus",
+    "realmId":4,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
     "isOffering":true
   }
 ]
