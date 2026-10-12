@@ -344,7 +344,7 @@
     let found = items.find(i => i.name === itemName);
     if (found) return found;
     let rData = rarityBaseStats[fallbackRarity] || rarityBaseStats["Uncommon"];
-    return { name: itemName, baseGift: rData.baseGift, baseStats: rData.baseStats };
+    return { name: itemName, baseGift: rData.baseGift, baseStats: rData.baseStats, realmId: 1 };
   }
 
   function getFoundationTier(multiplier) {
@@ -353,6 +353,14 @@
     if (multiplier <= 1.84) return "Earth";
     if (multiplier <= 2.44) return "Heaven";
     return "Dao";
+  }
+
+  function getRealmPenaltyMult(itemRealmId, currRealmId) {
+    const diff = currRealmId - itemRealmId;
+    if (diff <= 0) return 1.0;    // Current or higher realm: 100%
+    if (diff === 1) return 0.65;  // 1 realm below: -35%
+    if (diff === 2) return 0.30;  // 2 realms below: -70%
+    return 0.0;                   // 3+ realms below: 0%
   }
 
   // ==========================================
@@ -369,11 +377,12 @@
     document.getElementById("keyItem1").innerText = currRealmObj.key1;
     document.getElementById("keyItem2").innerText = currRealmObj.key2;
 
-    // Filter Offerings (+2 Major Realms max + always allow "None") 
-    const validOfferings = items.filter(item => 
-      item.name === "None" || 
-      (item.isOffering && item.realmId >= currRealmId && item.realmId <= currRealmId + 2)
-    );
+    // Filter Offerings (Allow items from 2 realms below up to 2 realms above + "None")
+    const validOfferings = items.filter(item => {
+      const rId = item.realmId ?? item.realmid ?? 1;
+      const isOff = item.isOffering ?? true;
+      return item.name === "None" || (isOff && rId >= currRealmId - 2 && rId <= currRealmId + 2);
+    });
 
     ["offering1", "offering2", "offering3"].forEach(id => {
       let select = document.getElementById(id);
@@ -400,7 +409,7 @@
     let rawKeyStats = 0.5 * ((k1Obj.baseStats * gradeMultipliers[key1Grade].statMult) + 
                             (k2Obj.baseStats * gradeMultipliers[key2Grade].statMult));
 
-    // 2. Calculate Offerings Raw Stats
+    // 2. Calculate Offerings Raw Stats with Realm Penalty
     const off1Name = document.getElementById("offering1").value;
     const off1Grade = document.getElementById("off1Grade").value;
     const off2Name = document.getElementById("offering2").value;
@@ -412,9 +421,13 @@
     let o2Obj = getItemObj(off2Name);
     let o3Obj = getItemObj(off3Name);
 
-    let rawOfferingStats = (o1Obj.baseStats * gradeMultipliers[off1Grade].statMult) +
-                           (o2Obj.baseStats * gradeMultipliers[off2Grade].statMult) +
-                           (o3Obj.baseStats * gradeMultipliers[off3Grade].statMult);
+    let p1 = getRealmPenaltyMult(o1Obj.realmId ?? o1Obj.realmid ?? currRealmId, currRealmId);
+    let p2 = getRealmPenaltyMult(o2Obj.realmId ?? o2Obj.realmid ?? currRealmId, currRealmId);
+    let p3 = getRealmPenaltyMult(o3Obj.realmId ?? o3Obj.realmid ?? currRealmId, currRealmId);
+
+    let rawOfferingStats = (o1Obj.baseStats * gradeMultipliers[off1Grade].statMult * p1) +
+                           (o2Obj.baseStats * gradeMultipliers[off2Grade].statMult * p2) +
+                           (o3Obj.baseStats * gradeMultipliers[off3Grade].statMult * p3);
 
     // Combine Key + Offering into Diminishing Pool
     let combinedRawStats = rawKeyStats + rawOfferingStats;
@@ -427,9 +440,9 @@
     const pillGrade = document.getElementById("pillGrade").value;
     let pillGiftBonus = pillGradeGifts[pillGrade];
 
-    let offeringsGift = (o1Obj.baseGift * gradeMultipliers[off1Grade].giftMult) +
-                        (o2Obj.baseGift * gradeMultipliers[off2Grade].giftMult) +
-                        (o3Obj.baseGift * gradeMultipliers[off3Grade].giftMult);
+    let offeringsGift = (o1Obj.baseGift * gradeMultipliers[off1Grade].giftMult * p1) +
+                        (o2Obj.baseGift * gradeMultipliers[off2Grade].giftMult * p2) +
+                        (o3Obj.baseGift * gradeMultipliers[off3Grade].giftMult * p3);
 
     let uncappedGiftMultiplier = 1.0 + pillGiftBonus + offeringsGift;
 
