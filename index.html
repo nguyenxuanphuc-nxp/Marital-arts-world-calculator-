@@ -169,6 +169,21 @@
       border-radius: 6px;
       font-size: 0.88rem;
       outline: none;
+      max-height: 200px;
+    }
+
+    /* Dropdown Optgroup & Option Styling */
+    optgroup {
+      background-color: #241317;
+      color: var(--gold-color);
+      font-weight: bold;
+      font-style: normal;
+    }
+
+    select option {
+      background-color: var(--input-bg);
+      color: var(--ivory-text);
+      padding: 6px;
     }
 
     select:focus {
@@ -181,7 +196,7 @@
       border-radius: 10px;
       padding: 18px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
       gap: 12px;
       text-align: center;
       box-shadow: inset 0 0 15px rgba(153, 27, 27, 0.3);
@@ -287,7 +302,7 @@
     <details>
       <summary>💡 4. How to Use</summary>
       <ul>
-        <li>1. Select your <b>Current Realm</b>.</li>
+        <li>1. Select your <b>Current Realm</b> (e.g., Qi Refining is R1, Foundation Establishment is R2, Qi Condensation is R3, etc.).</li>
         <li>2. Pick your <b>Qi Spot</b> location and <b>Pill Grade</b>.</li>
         <li>3. Set key items grades (<i>Low, Mid, High, Heaven, Emperor</i>).</li>
         <li>4. Choose up to 3 <b>Offerings</b> and their grades.</li>
@@ -383,6 +398,10 @@
         <div id="capWarning" class="warning-text">Capped by Qi Spot!</div>
       </div>
       <div class="stat-box">
+        <h4>Efficiency</h4>
+        <p id="efficiency">W.I.P</p>
+      </div>
+      <div class="stat-box">
         <h4>Foundation Tier</h4>
         <p id="foundationTier" class="tier-tag">Common</p>
       </div>
@@ -402,11 +421,11 @@
     { id: 3, name: "Qi Condensation", pill: "Nine-Turn Golden Core Pill", key1: "Black Tiger Claw", key2: "Beads of the Hollow Heart", key1Rarity: "Rare", key2Rarity: "Epic" },
     { id: 4, name: "Golden Core", pill: "Spirit Origin Pill", key1: "Storm-Heart Jade", key2: "Crimson Moon Shard", key1Rarity: "Rare", key2Rarity: "Epic" },
     { id: 5, name: "Origin Spirit", pill: "Nascent Soul Fruit", key1: "Nine-Lantern Foxfire Bead", key2: "Khan Temur's Golden Seal", key1Rarity: "Epic", key2Rarity: "Epic" },
-    { id: 6, name: "Nascent Soul", pill: "Soul Formation Pill", key1: "Soul Formation Pill", key2: "None", key1Rarity: "Mythic", key2Rarity: "Uncommon" },
-    { id: 7, name: "Soul Formation", pill: "Dao-Seeking Tea", key1: "None", key2: "None", key1Rarity: "Mythic", key2Rarity: "Uncommon" },
-    { id: 8, name: "Dao-Seeking", pill: "Ascension Pill", key1: "Ascension Pill", key2: "None", key1Rarity: "Mythic", key2Rarity: "Uncommon" },
-    { id: 9, name: "Ascension", pill: "Immortal Pill", key1: "Immortal Pill", key2: "None", key1Rarity: "Mythic", key2Rarity: "Uncommon" },
-    { id: 10, name: "Immortal", pill: "Max Realm", key1: "None", key2: "None", key1Rarity: "Uncommon", key2Rarity: "Uncommon" }
+    { id: 6, name: "Nascent Soul", pill: "Soul Formation Pill", key1: "Old Thunderhoof's Storm Horn", key2: "Roc Matriarch's Plume", key1Rarity: "Epic", key2Rarity: "Epic" },
+    { id: 7, name: "Soul Formation", pill: "Dao-seeking Tea", key1: "None", key2: "None", key1Rarity: "Epic", key2Rarity: "Epic" },
+    { id: 8, name: "Dao-Seeking", pill: "None", key1: "None", key2: "None", key1Rarity: "Epic", key2Rarity: "Epic" },
+    { id: 9, name: "Ascension", pill: "None", key1: "None", key2: "None", key1Rarity: "Epic", key2Rarity: "Epic" },
+    { id: 10, name: "Immortal", pill: "Max Realm", key1: "None", key2: "None", key1Rarity: "Epic", key2Rarity: "Epic" }
   ];
 
   const qiSpots = [
@@ -538,22 +557,52 @@
     document.getElementById("keyItem1").innerText = currRealmObj.key1;
     document.getElementById("keyItem2").innerText = currRealmObj.key2;
 
-    // Filter Offerings (Allow all offering items regardless of realm distance)
+    // Filter Offerings (Allow items within -2 and +2 realms of the current realm)
     const validOfferings = items.filter(item => {
+      const rId = item.realmId ?? item.realmid ?? 1;
       const isOff = item.isOffering ?? true;
-      return item.name === "None" || isOff;
+      return item.name === "None" || (isOff && rId >= currRealmId - 2 && rId <= currRealmId + 2);
     });
 
     ["offering1", "offering2", "offering3"].forEach(id => {
       let select = document.getElementById(id);
       let currentSelection = select.value;
       select.innerHTML = "";
-      validOfferings.forEach(item => {
-        let opt = document.createElement("option");
-        opt.value = item.name;
-        opt.innerText = item.name === "None" ? "None" : `${item.name} (${item.rarity})`;
-        select.appendChild(opt);
-      });
+
+      // 1. None option
+      let noneOpt = document.createElement("option");
+      noneOpt.value = "None";
+      noneOpt.innerText = "None";
+      select.appendChild(noneOpt);
+
+      // 2. Group items into <optgroup> headers above their respective items
+      const minRealm = Math.max(1, currRealmId - 2);
+      const maxRealm = Math.min(realms.length, currRealmId + 2);
+
+      for (let r = minRealm; r <= maxRealm; r++) {
+        const realmItems = validOfferings.filter(item => {
+          const itemRId = item.realmId ?? item.realmid ?? 1;
+          return item.name !== "None" && itemRId === r;
+        });
+
+        if (realmItems.length > 0) {
+          const rObj = realms.find(realm => realm.id === r);
+          const rName = rObj ? rObj.name : `Realm ${r}`;
+
+          let group = document.createElement("optgroup");
+          group.label = `--- Realm ${r}: ${rName} ---`;
+
+          realmItems.forEach(item => {
+            let opt = document.createElement("option");
+            opt.value = item.name;
+            opt.innerText = `${item.name} [R${r} - ${item.rarity}]`;
+            group.appendChild(opt);
+          });
+
+          select.appendChild(group);
+        }
+      }
+
       if (currentSelection && [...select.options].some(o => o.value === currentSelection)) {
         select.value = currentSelection;
       }
