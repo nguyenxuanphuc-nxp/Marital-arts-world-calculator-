@@ -244,17 +244,17 @@
   <div class="guide-panel">
     <h2>📜 Cultivation Guide</h2>
     
-    <details open>
+    <details>
       <summary>🌌 1. Breakthrough Mechanics</summary>
       <p>Advancing to higher cultivation realms requires three core elements:</p>
       <ul>
         <li><b>Core Pill:</b> Mandatory item. Pill grade increases your Realm Gift Multiplier.</li>
-        <li><b>Key Items:</b> Specific realm requirements. Key items yield <b>50% (half)</b> stat and gift value.</li>
+        <li><b>Key Items:</b> Specific realm requirements. Key items yield <b>50% stat points</b> and <b>100% full gift value</b>.</li>
         <li><b>Offerings:</b> Up to 3 additional treasures sacrificed to boost stat points and gift multiplier.</li>
       </ul>
     </details>
 
-    <details open>
+    <details>
       <summary>📍 2. Qi Spots & Gift Caps</summary>
       <p>Location limits your maximum <b>Realm Gift Multiplier</b>. Current qi spot and their ceiling are as follows:</p>
       <table class="guide-table">
@@ -286,17 +286,16 @@
         </tbody>
       </table>
 
-      <p><b>Realm Modifiers (vs Current Realm):</b></p>
+      <p><b>Attribute Grade Factors:</b></p>
       <ul>
-        <li><b>+2 Realms Above:</b> +50% Bonus (1.50x)</li>
-        <li><b>+1 Realm Above:</b> +25% Bonus (1.25x)</li>
-        <li><b>Same Realm:</b> 100% Standard (1.00x)</li>
-        <li><b>-1 Realm Below:</b> -35% Penalty (0.65x)</li>
-        <li><b>-2 Realms Below:</b> -70% Penalty (0.30x)</li>
-        <li><b>-3+ Realms Below:</b> 0.25x Floor Cap (25% Min Value)</li>
+        <li><b>Low:</b> 1.0x</li>
+        <li><b>Mid:</b> 1.5x</li>
+        <li><b>High:</b> 2.0x</li>
+        <li><b>Heaven:</b> 2.5x</li>
+        <li><b>Emperor:</b> 3.0x</li>
       </ul>
 
-      <p><b>Item Stat Cap:</b> Item stats stack linearly up to 6 points, then suffer a 50% diminishing return up to a max of <b>12 Stats</b>. A maximum of 19 stats points can be obtained.</p>
+      <p><b>Item Stat Cap:</b> Item stats stack linearly up to 6 points, then suffer a 50% diminishing return up to a max of <b>12 Stats</b>. A maximum of 19 stats points can be obtained with Dao bonus (2 Base + 12 Items + 5 Dao).</p>
     </details>
 
     <details>
@@ -305,9 +304,21 @@
         <li>1. Select your <b>Current Realm</b> (e.g., Qi Refining is R1, Foundation Establishment is R2, Qi Condensation is R3, etc.).</li>
         <li>2. Pick your <b>Qi Spot</b> location and <b>Pill Grade</b>.</li>
         <li>3. Set key items grades (<i>Low, Mid, High, Heaven, Emperor</i>).</li>
-        <li>4. Choose up to 3 <b>Offerings</b> and their grades.</li>
+        <li>4. Choose up to 3 <b>Offerings</b> and their grades. You can type the first few letters of an offering to quickly select it.</li>
         <li>5. Read real-time stats, gift multiplier, and foundation tier!</li>
       </ul>
+    </details>
+
+    <details>
+      <summary>⚡ 5. Efficiency & Foundation Remake</summary>
+      <p><b>Efficiency Percentage:</b> Measures how close your setup is to reaching the absolute maximum Realm Gift potential for your current breakthrough level (Current Realm Gift ÷ Max Realm Gift Potential).</p>
+      <p><i>Note: Maxing out Realm Gifts is intended to be accomplished via <b>Foundation Remake</b> (re-forging your base after reaching higher realms) rather than trying to hit maximum potential on your very first initial breakthrough.</i></p>
+    </details>
+
+    <details>
+      <summary>👥 6. Credits</summary>
+      <p><b>Owner:</b> Beelzebub (<code>@Fernypaper</code>). Feel free to reach out with feedback or suggestions!</p>
+      <p><b>Contributor:</b> Abe (<code>@TayaraAbe</code>) — <i>The great dev and item list provider</i></p>
     </details>
   </div>
 
@@ -374,7 +385,7 @@
       </div>
     </div>
 
-    <!-- Real-Time Output Panel -->
+    <!-- Real-Time Output Panel (Swapped Realm Gift Multiplier & Tribulation) -->
     <div class="results-panel">
       <div class="stat-box">
         <h4>Base Stats</h4>
@@ -398,8 +409,12 @@
         <div id="capWarning" class="warning-text">Capped by Qi Spot!</div>
       </div>
       <div class="stat-box">
+        <h4>Tribulation</h4>
+        <p id="tribulationStatus" style="font-size:1.1rem;">None</p>
+      </div>
+      <div class="stat-box">
         <h4>Efficiency</h4>
-        <p id="efficiency">W.I.P</p>
+        <p id="efficiency">12.35%</p>
       </div>
       <div class="stat-box">
         <h4>Foundation Tier</h4>
@@ -419,14 +434,27 @@
     { id: 1, name: "Qi Refining", pill: "Foundation Establishment Pill", key1: "Scarback's Broken Tusk", key2: "None", key1Rarity: "Rare", key2Rarity: "Uncommon" },
     { id: 2, name: "Foundation Establishment", pill: "Crystal Condensing Pill", key1: "Iron-Beak's Hook", key2: "None", key1Rarity: "Rare", key2Rarity: "Uncommon" },
     { id: 3, name: "Qi Condensation", pill: "Nine-Turn Golden Core Pill", key1: "Black Tiger Claw", key2: "Beads of the Hollow Heart", key1Rarity: "Rare", key2Rarity: "Epic" },
-    { id: 4, name: "Golden Core", pill: "Spirit Origin Pill", key1: "Storm-Heart Jade", key2: "Crimson Moon Shard", key1Rarity: "Rare", key2Rarity: "Epic" },
+    { id: 4, name: "Golden Core", pill: "Spirit Origin Pill", key1: "Crimson Moon Shard", key2: "Storm-Heart Jade", key1Rarity: "Epic", key2Rarity: "Epic" },
     { id: 5, name: "Origin Spirit", pill: "Nascent Soul Fruit", key1: "Nine-Lantern Foxfire Bead", key2: "Khan Temur's Golden Seal", key1Rarity: "Epic", key2Rarity: "Epic" },
     { id: 6, name: "Nascent Soul", pill: "Soul Formation Pill", key1: "Old Thunderhoof's Storm Horn", key2: "Roc Matriarch's Plume", key1Rarity: "Epic", key2Rarity: "Epic" },
-    { id: 7, name: "Soul Formation", pill: "Dao-seeking Tea", key1: "Kulong's Withered Spine", key2: "Heart Demon Core", key1Rarity: "Mythic", key2Rarity: "Mythic" },
-    { id: 8, name: "Dao-Seeking", pill: "None", key1: "None", key2: "None", key1Rarity: "Epic", key2Rarity: "Epic" },
-    { id: 9, name: "Ascension", pill: "None", key1: "None", key2: "None", key1Rarity: "Epic", key2Rarity: "Epic" },
-    { id: 10, name: "Immortal", pill: "Max Realm", key1: "None", key2: "None", key1Rarity: "Epic", key2Rarity: "Epic" }
+    { id: 7, name: "Soul Formation", pill: "Dao-seeking Tea", key1: "Kulong's Withered Spine", key2: "Heart-Demon Core", key1Rarity: "Mythic", key2Rarity: "Mythic" },
+    { id: 8, name: "Dao-Seeking", pill: "Placeholder pill", key1: "Heart of the Burning Vein", key2: "The Ninth Banner's Seal", key1Rarity: "Legendary", key2Rarity: "Legendary" },
+    { id: 9, name: "Ascension", pill: "Placeholder pill", key1: "The Ninth Gate Mandate", key2: "None", key1Rarity: "Mythic", key2Rarity: "Uncommon" },
+    { id: 10, name: "Immortal", pill: "Max Realm", key1: "None", key2: "None", key1Rarity: "Uncommon", key2Rarity: "Uncommon" }
   ];
+
+  // Best Possible Realm Gift Reference Table for Efficiency Calculations
+  const maxRealmsGifts = {
+    1: 8.10,
+    2: 8.10,
+    3: 8.61,
+    4: 7.73,
+    5: 9.00,
+    6: 7.97,
+    7: 10.44,
+    8: 8.57,
+    9: 6.99
+  };
 
   const qiSpots = [
     { name: "No Qi Spot (Human Cap)", cap: 1.40 },
@@ -454,6 +482,10 @@
 
   const pillGradeGifts = {
     "low": 0.00, "mid": 0.03, "high": 0.07, "heaven": 0.15, "emperor": 0.22
+  };
+
+  const rarityRank = {
+    "Uncommon": 1, "Rare": 2, "Epic": 3, "Legendary": 4, "Mythic": 5
   };
 
   let items = [];
@@ -510,7 +542,8 @@
       Object.keys(gradeMultipliers).forEach(g => {
         let opt = document.createElement("option");
         opt.value = g;
-        opt.innerText = g;
+        // Capitalize first letter of grade display name
+        opt.innerText = g.charAt(0).toUpperCase() + g.slice(1);
         select.appendChild(opt);
       });
     });
@@ -522,7 +555,7 @@
     let found = items.find(i => i.name === itemName);
     if (found) return found;
     let rData = rarityBaseStats[fallbackRarity] || rarityBaseStats["Uncommon"];
-    return { name: itemName, baseGift: rData.baseGift, baseStats: rData.baseStats, realmId: 1 };
+    return { name: itemName, baseGift: rData.baseGift, baseStats: rData.baseStats, realmId: 1, rarity: fallbackRarity };
   }
 
   function getFoundationTier(multiplier) {
@@ -535,12 +568,12 @@
 
   function getRealmModifierMult(itemRealmId, currRealmId) {
     const diff = itemRealmId - currRealmId;
-    if (diff === 2) return 1.50;   // 2 Realms Above: +50%
+    if (diff >= 2) return 1.50;    // 2 or more Realms Above: +50%
     if (diff === 1) return 1.25;   // 1 Realm Above: +25%
     if (diff === 0) return 1.00;   // Same Realm: Normal
     if (diff === -1) return 0.65;  // 1 Realm Below: -35%
     if (diff === -2) return 0.30;  // 2 Realms Below: -70%
-    return 0.25;                  // 3+ Realms Below: Capped at 0.25 (25% floor)
+    return 0.25;                  // 3+ Realms Below: Capped at 0.25
   }
 
   // ==========================================
@@ -557,11 +590,14 @@
     document.getElementById("keyItem1").innerText = currRealmObj.key1;
     document.getElementById("keyItem2").innerText = currRealmObj.key2;
 
-    // Filter Offerings (Allow items within -2 and +2 realms of the current realm)
+    // Filter Offerings: Qi Refining (R1) sees up to Realm 4 (Golden Core); all other realms see -2 to +2 realms
+    const minRealm = (currRealmId === 1) ? 1 : Math.max(1, currRealmId - 2);
+    const maxRealm = (currRealmId === 1) ? 4 : Math.min(realms.length, currRealmId + 2);
+
     const validOfferings = items.filter(item => {
       const rId = item.realmId ?? item.realmid ?? 1;
       const isOff = item.isOffering ?? true;
-      return item.name === "None" || (isOff && rId >= currRealmId - 2 && rId <= currRealmId + 2);
+      return item.name === "None" || (isOff && rId >= minRealm && rId <= maxRealm);
     });
 
     ["offering1", "offering2", "offering3"].forEach(id => {
@@ -576,9 +612,6 @@
       select.appendChild(noneOpt);
 
       // 2. Group items into <optgroup> headers above their respective items
-      const minRealm = Math.max(1, currRealmId - 2);
-      const maxRealm = Math.min(realms.length, currRealmId + 2);
-
       for (let r = minRealm; r <= maxRealm; r++) {
         const realmItems = validOfferings.filter(item => {
           const itemRId = item.realmId ?? item.realmid ?? 1;
@@ -608,20 +641,23 @@
       }
     });
 
-    // 1. Calculate Key Items Raw Stats (Halved at 50% relative to offerings)
+    // 1. Calculate Key Items Raw Stats & Gifts
     const key1Grade = document.getElementById("key1Grade").value;
     const key2Grade = document.getElementById("key2Grade").value;
 
     let k1Obj = getItemObj(currRealmObj.key1, currRealmObj.key1Rarity);
     let k2Obj = getItemObj(currRealmObj.key2, currRealmObj.key2Rarity);
 
+    let m_k1 = getRealmModifierMult(k1Obj.realmId ?? k1Obj.realmid ?? currRealmId, currRealmId);
+    let m_k2 = getRealmModifierMult(k2Obj.realmId ?? k2Obj.realmid ?? currRealmId, currRealmId);
+
     let rawKeyStats = 0.5 * ((k1Obj.baseStats * gradeMultipliers[key1Grade].statMult) + 
                             (k2Obj.baseStats * gradeMultipliers[key2Grade].statMult));
 
-    let keyGiftBonus = 0.5 * ((k1Obj.baseGift * gradeMultipliers[key1Grade].giftMult) + 
-                             (k2Obj.baseGift * gradeMultipliers[key2Grade].giftMult));
+    let keyGiftBonus = (k1Obj.baseGift * gradeMultipliers[key1Grade].giftMult * m_k1) + 
+                       (k2Obj.baseGift * gradeMultipliers[key2Grade].giftMult * m_k2);
 
-    // 2. Calculate Offerings Raw Stats with Realm Modifier (+50%, +25%, 0%, -35%, -70%, floor at 0.25)
+    // 2. Calculate Offerings Raw Stats & Gifts
     const off1Name = document.getElementById("offering1").value;
     const off1Grade = document.getElementById("off1Grade").value;
     const off2Name = document.getElementById("offering2").value;
@@ -637,9 +673,9 @@
     let m2 = getRealmModifierMult(o2Obj.realmId ?? o2Obj.realmid ?? currRealmId, currRealmId);
     let m3 = getRealmModifierMult(o3Obj.realmId ?? o3Obj.realmid ?? currRealmId, currRealmId);
 
-    let rawOfferingStats = (o1Obj.baseStats * gradeMultipliers[off1Grade].statMult * m1) +
-                           (o2Obj.baseStats * gradeMultipliers[off2Grade].statMult * m2) +
-                           (o3Obj.baseStats * gradeMultipliers[off3Grade].statMult * m3);
+    let rawOfferingStats = (o1Obj.baseStats * gradeMultipliers[off1Grade].statMult) +
+                           (o2Obj.baseStats * gradeMultipliers[off2Grade].statMult) +
+                           (o3Obj.baseStats * gradeMultipliers[off3Grade].statMult);
 
     // Combine Key + Offering into Diminishing Pool
     let combinedRawStats = rawKeyStats + rawOfferingStats;
@@ -648,7 +684,25 @@
 
     let roundedItemStats = Math.round(effectiveItemStats);
 
-    // 3. Realm Gift & Foundation Tier
+    // 3. Tribulation Detection & Bonus (+0.25)
+    let tribulationActive = false;
+    const selectedOfferings = [o1Obj, o2Obj, o3Obj].filter(o => o.name !== "None");
+    const rareOrHigherCount = selectedOfferings.filter(o => (rarityRank[o.rarity] || 1) >= 2).length;
+
+    if (currRealmId >= 4) {
+      // Golden Core and above always trigger tribulation
+      tribulationActive = true;
+    } else if (currRealmId === 1) {
+      // R1 -> R2 triggers if at least 2 Rare or higher offerings are present
+      tribulationActive = (rareOrHigherCount >= 2);
+    } else if (currRealmId === 2 || currRealmId === 3) {
+      // R2 -> R3 and R3 -> R4 trigger if at least 1 Rare or higher offering is present
+      tribulationActive = (rareOrHigherCount >= 1);
+    }
+
+    let tribulationBonus = tribulationActive ? 0.25 : 0.00;
+
+    // 4. Realm Gift Calculation
     const pillGrade = document.getElementById("pillGrade").value;
     let pillGiftBonus = pillGradeGifts[pillGrade];
 
@@ -656,7 +710,7 @@
                         (o2Obj.baseGift * gradeMultipliers[off2Grade].giftMult * m2) +
                         (o3Obj.baseGift * gradeMultipliers[off3Grade].giftMult * m3);
 
-    let uncappedGiftMultiplier = 1.0 + pillGiftBonus + keyGiftBonus + offeringsGift;
+    let uncappedGiftMultiplier = 1.0 + pillGiftBonus + keyGiftBonus + offeringsGift + tribulationBonus;
 
     const qiSpotIdx = parseInt(document.getElementById("qiSpot").value);
     const selectedQiSpot = qiSpots[qiSpotIdx];
@@ -673,16 +727,23 @@
 
     let tier = getFoundationTier(finalGiftMultiplier);
 
-    // 4. Dao Tier Bonus
+    // 5. Dao Tier Bonus
     let daoBonus = (tier === "Dao") ? 5 : 0;
 
     let totalStats = 2 + roundedItemStats + daoBonus;
+
+    // 6. Efficiency Calculation
+    let maxPotentialGift = maxRealmsGifts[currRealmId] || 8.10;
+    let efficiencyPct = (uncappedGiftMultiplier / maxPotentialGift) * 100;
+    efficiencyPct = Math.min(100, efficiencyPct); // Cap display at 100%
 
     // Update UI Elements
     document.getElementById("itemsStats").innerText = roundedItemStats;
     document.getElementById("daoBonus").innerText = `+${daoBonus}`;
     document.getElementById("totalStats").innerText = totalStats;
+    document.getElementById("tribulationStatus").innerText = tribulationActive ? "Active (+0.25)" : "None";
     document.getElementById("giftMultiplier").innerText = `${finalGiftMultiplier.toFixed(2)}x`;
+    document.getElementById("efficiency").innerText = `${efficiencyPct.toFixed(2)}%`;
     document.getElementById("foundationTier").innerText = tier;
   }
 
