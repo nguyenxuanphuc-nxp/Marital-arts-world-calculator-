@@ -1,0 +1,74 @@
+[
+  {
+    "name":"Scarback's Broken Tusk",
+    "realmid ":2,
+    "rarity":"Rare",
+    "baseGift":0.14,
+    "baseStats":1,
+    "isKey":true,
+    "isOffering":true
+  },
+  {
+    "name":"Iron-Beak's Hook",
+    "realmid ":3,
+    "rarity":"Rare",
+    "baseGift":0.14,
+    "baseStats":1,
+    "isKey":true,
+    "isOffering":true
+  },
+  {
+    "name":"Black Tiger Claw",
+    "realmid ":4,
+    "rarity":"Rare",
+    "baseGift":0.14,
+    "baseStats":1,
+    "isKey":true,
+    "isOffering":true
+  },
+  {
+    "name":"Beads of the Hollow Heart",
+    "realmid ":4,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":true,
+    "isOffering":true
+  },
+  {
+    "name":"Storm-Heart Jade",
+    "realmid ":5,
+    "rarity":"Rare",
+    "baseGift":0.14,
+    "baseStats":1,
+    "isKey":true,
+    "isOffering":true
+  },
+  {
+    "name":"Crimson Moon Shard",
+    "realmid ":5,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":true,
+    "isOffering":true
+  },
+  {
+    "name":"Nine-Lantern Foxfire Bead",
+    "realmid ":6,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":true,
+    "isOffering":true
+  },
+  {
+    "name":"Khan Temur's Golden Seal",
+    "realmid ":6,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":true,
+    "isOffering":true
+  }
+]
