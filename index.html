@@ -27,35 +27,118 @@
       justify-content: center;
     }
 
-    .container {
-      max-width: 980px;
+    /* Main Container Split into Side-by-Side Flex Layout */
+    .main-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      max-width: 1400px;
       width: 100%;
-      background: var(--card-bg);
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-      border: 1px solid var(--card-border);
+      align-items: flex-start;
     }
 
-    h1 {
+    /* Left Side Guide Panel */
+    .guide-panel {
+      flex: 1 1 380px;
+      max-width: 440px;
+      background: var(--card-bg);
+      padding: 24px;
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+
+    /* Right Side Calculator Panel */
+    .calculator-panel {
+      flex: 2 1 600px;
+      background: var(--card-bg);
+      padding: 28px;
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    }
+
+    h1, h2 {
       text-align: center;
       color: var(--gold-color);
-      margin-bottom: 25px;
-      font-size: 1.9rem;
+      margin-top: 0;
+      margin-bottom: 20px;
       letter-spacing: 1px;
       text-shadow: 0 0 12px rgba(251, 191, 36, 0.2);
     }
 
+    h1 { font-size: 1.8rem; }
+    h2 { font-size: 1.4rem; border-bottom: 1px solid var(--card-border); padding-bottom: 8px; }
+
+    /* Custom Scrollbar for Guide Panel */
+    .guide-panel::-webkit-scrollbar {
+      width: 6px;
+    }
+    .guide-panel::-webkit-scrollbar-track {
+      background: var(--input-bg);
+    }
+    .guide-panel::-webkit-scrollbar-thumb {
+      background: var(--card-border);
+      border-radius: 4px;
+    }
+
+    /* Collapsible Accordion Sections in Guide */
+    details {
+      background: var(--input-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 6px;
+      padding: 10px 14px;
+      margin-bottom: 12px;
+    }
+
+    summary {
+      font-weight: bold;
+      color: var(--gold-color);
+      cursor: pointer;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    details p, details ul, details table {
+      font-size: 0.82rem;
+      color: var(--ivory-text);
+      line-height: 1.4;
+      margin-top: 8px;
+      margin-bottom: 4px;
+    }
+
+    details ul { padding-left: 18px; }
+
+    /* Guide Tables */
+    .guide-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 8px;
+      font-size: 0.8rem;
+    }
+    .guide-table th, .guide-table td {
+      border: 1px solid var(--card-border);
+      padding: 6px 8px;
+      text-align: left;
+    }
+    .guide-table th {
+      background: var(--card-bg);
+      color: var(--gold-color);
+    }
+
+    /* Calculator Grid */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 18px;
-      margin-bottom: 25px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-bottom: 22px;
     }
 
     .card {
       background: var(--input-bg);
-      padding: 18px;
+      padding: 16px;
       border-radius: 8px;
       border: 1px solid var(--card-border);
     }
@@ -63,7 +146,7 @@
     .card h3 {
       margin-top: 0;
       color: var(--gold-color);
-      font-size: 1.05rem;
+      font-size: 1rem;
       border-bottom: 1px solid var(--card-border);
       padding-bottom: 6px;
       text-transform: uppercase;
@@ -71,20 +154,20 @@
 
     label {
       display: block;
-      font-size: 0.85rem;
-      margin-top: 12px;
+      font-size: 0.82rem;
+      margin-top: 10px;
       margin-bottom: 4px;
       color: var(--muted-text);
     }
 
     select {
       width: 100%;
-      padding: 9px;
+      padding: 8px;
       background: var(--card-bg);
       color: var(--ivory-text);
       border: 1px solid var(--card-border);
       border-radius: 6px;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       outline: none;
     }
 
@@ -96,10 +179,10 @@
       background: linear-gradient(135deg, #2a080c 0%, #12090b 100%);
       border: 1.5px solid var(--gold-color);
       border-radius: 10px;
-      padding: 22px;
+      padding: 18px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 12px;
       text-align: center;
       box-shadow: inset 0 0 15px rgba(153, 27, 27, 0.3);
     }
@@ -107,13 +190,13 @@
     .stat-box h4 {
       margin: 0;
       color: var(--muted-text);
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       text-transform: uppercase;
     }
 
     .stat-box p {
-      margin: 6px 0 0 0;
-      font-size: 1.45rem;
+      margin: 4px 0 0 0;
+      font-size: 1.35rem;
       font-weight: bold;
       color: var(--gold-color);
     }
@@ -126,12 +209,12 @@
     .auto-field {
       color: var(--gold-color);
       font-weight: bold;
-      font-size: 0.95rem;
-      padding: 6px 0;
+      font-size: 0.9rem;
+      padding: 4px 0;
     }
 
     .warning-text {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       color: #f87171;
       margin-top: 4px;
       display: none;
@@ -140,96 +223,172 @@
 </head>
 <body>
 
-<div class="container">
-  <h1>✨Martial Arts World Breakthrough Calculator⚡</h1>
+<div class="main-wrapper">
+  
+  <!-- LEFT PANEL: Cultivation & Calculator Guide -->
+  <div class="guide-panel">
+    <h2>📜 Cultivation Guide</h2>
+    
+    <details open>
+      <summary>🌌 1. Breakthrough Mechanics</summary>
+      <p>Advancing to higher cultivation realms requires three core elements:</p>
+      <ul>
+        <li><b>Core Pill:</b> Mandatory item. Pill grade increases your Realm Gift Multiplier.</li>
+        <li><b>Key Items:</b> Specific realm requirements. Key items yield <b>50% (half)</b> stat and gift value.</li>
+        <li><b>Offerings:</b> Up to 3 additional treasures sacrificed to boost stat points and gift multiplier.</li>
+      </ul>
+    </details>
 
-  <div class="grid">
-    <!-- 1. Realm & Location Qi -->
-    <div class="card">
-      <h3>1. Realm & Location Qi</h3>
-      
-      <label for="currentRealm">Current Realm</label>
-      <select id="currentRealm" onchange="updateCalculator()"></select>
+    <details open>
+      <summary>📍 2. Qi Spots & Gift Caps</summary>
+      <p>Location limits your maximum <b>Realm Gift Multiplier</b>. Current qi spot and their ceiling are as follows:</p>
+      <table class="guide-table">
+        <thead>
+          <tr><th>Qi Spot Location</th><th>Cap</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>No Qi Spot</td><td><b>1.40x</b> (Human)</td></tr>
+          <tr><td>Meditation / Common Pool</td><td><b>1.80x</b> (Earth)</td></tr>
+          <tr><td>Purple Thunder Pool</td><td><b>2.10x</b> (Heaven)</td></tr>
+          <tr><td>Blackgold Fog Pool</td><td><b>2.40x</b> (Heaven)</td></tr>
+          <tr><td>The Void</td><td><b>No cap</b> (Dao)</td></tr>
+        </tbody>
+      </table>
+      <p>Excessive realm gift values above the cap are lost, so choose a good qi spot.</p>
+    </details>
 
-      <label>Next Realm</label>
-      <div id="nextRealm" class="auto-field">-</div>
+    <details>
+      <summary>⚔️ 3. Offering & Rarity Rules</summary>
+      <p><b>Base Values by Rarity:</b></p>
+      <table class="guide-table">
+        <thead><tr><th>Rarity</th><th>Gift</th><th>Stats</th></tr></thead>
+        <tbody>
+          <tr><td>Uncommon</td><td>+0.08</td><td>0</td></tr>
+          <tr><td>Rare</td><td>+0.14</td><td>1</td></tr>
+          <tr><td>Epic</td><td>+0.22</td><td>1</td></tr>
+          <tr><td>Legendary</td><td>+0.32</td><td>2</td></tr>
+          <tr><td>Mythic</td><td>+0.46</td><td>4</td></tr>
+        </tbody>
+      </table>
 
-      <label for="qiSpot">Qi Spot Location (Sets Ceiling)</label>
-      <select id="qiSpot" onchange="updateCalculator()"></select>
+      <p><b>Realm Modifiers (vs Current Realm):</b></p>
+      <ul>
+        <li><b>+2 Realms Above:</b> +50% Bonus (1.50x)</li>
+        <li><b>+1 Realm Above:</b> +25% Bonus (1.25x)</li>
+        <li><b>Same Realm:</b> 100% Standard (1.00x)</li>
+        <li><b>-1 Realm Below:</b> -35% Penalty (0.65x)</li>
+        <li><b>-2 Realms Below:</b> -70% Penalty (0.30x)</li>
+        <li><b>-3+ Realms Below:</b> Unusable (0.00x)</li>
+      </ul>
 
-      <label>Core Pill Needed</label>
-      <div id="corePill" class="auto-field">-</div>
+      <p><b>Item Stat Cap:</b> Item stats stack linearly up to 6 points, then suffer a 50% diminishing return up to a max of <b>12 Stats</b>. A maximum of 19 stats points can be obtained.</p>
+    </details>
 
-      <label for="pillGrade">Pill Grade</label>
-      <select id="pillGrade" onchange="updateCalculator()"></select>
+    <details>
+      <summary>💡 4. How to Use</summary>
+      <ul>
+        <li>1. Select your <b>Current Realm</b>.</li>
+        <li>2. Pick your <b>Qi Spot</b> location and <b>Pill Grade</b>.</li>
+        <li>3. Set key items grades (<i>Low, Mid, High, Heaven, Emperor</i>).</li>
+        <li>4. Choose up to 3 <b>Offerings</b> and their grades.</li>
+        <li>5. Read real-time stats, gift multiplier, and foundation tier!</li>
+      </ul>
+    </details>
+  </div>
+
+  <!-- RIGHT PANEL: Calculator Tool -->
+  <div class="calculator-panel">
+    <h1>✨ Martial Arts World Breakthrough Calculator ⚡</h1>
+
+    <div class="grid">
+      <!-- 1. Realm & Location Qi -->
+      <div class="card">
+        <h3>1. Realm & Location Qi</h3>
+        
+        <label for="currentRealm">Current Realm</label>
+        <select id="currentRealm" onchange="updateCalculator()"></select>
+
+        <label>Next Realm</label>
+        <div id="nextRealm" class="auto-field">-</div>
+
+        <label for="qiSpot">Qi Spot Location (Sets Ceiling)</label>
+        <select id="qiSpot" onchange="updateCalculator()"></select>
+
+        <label>Core Pill Needed</label>
+        <div id="corePill" class="auto-field">-</div>
+
+        <label for="pillGrade">Pill Grade</label>
+        <select id="pillGrade" onchange="updateCalculator()"></select>
+      </div>
+
+      <!-- 2. Key Items -->
+      <div class="card">
+        <h3>2. Key Items</h3>
+        
+        <label>Key Item 1</label>
+        <div id="keyItem1" class="auto-field">-</div>
+
+        <label for="key1Grade">Key Item 1 Grade</label>
+        <select id="key1Grade" onchange="updateCalculator()"></select>
+
+        <label>Key Item 2</label>
+        <div id="keyItem2" class="auto-field">-</div>
+
+        <label for="key2Grade">Key Item 2 Grade</label>
+        <select id="key2Grade" onchange="updateCalculator()"></select>
+      </div>
+
+      <!-- 3. Offerings / Treasures -->
+      <div class="card">
+        <h3>3. Offerings / Treasures</h3>
+        
+        <label for="offering1">Offering 1</label>
+        <select id="offering1" onchange="updateCalculator()"></select>
+        <label for="off1Grade">Offering 1 Grade</label>
+        <select id="off1Grade" onchange="updateCalculator()"></select>
+
+        <label for="offering2" style="margin-top:8px;">Offering 2</label>
+        <select id="offering2" onchange="updateCalculator()"></select>
+        <label for="off2Grade">Offering 2 Grade</label>
+        <select id="off2Grade" onchange="updateCalculator()"></select>
+
+        <label for="offering3" style="margin-top:8px;">Offering 3</label>
+        <select id="offering3" onchange="updateCalculator()"></select>
+        <label for="off3Grade">Offering 3 Grade</label>
+        <select id="off3Grade" onchange="updateCalculator()"></select>
+      </div>
     </div>
 
-    <!-- 2. Key Items -->
-    <div class="card">
-      <h3>2. Key Items</h3>
-      
-      <label>Key Item 1</label>
-      <div id="keyItem1" class="auto-field">-</div>
-
-      <label for="key1Grade">Key Item 1 Grade</label>
-      <select id="key1Grade" onchange="updateCalculator()"></select>
-
-      <label>Key Item 2</label>
-      <div id="keyItem2" class="auto-field">-</div>
-
-      <label for="key2Grade">Key Item 2 Grade</label>
-      <select id="key2Grade" onchange="updateCalculator()"></select>
-    </div>
-
-    <!-- 3. Offerings / Treasures -->
-    <div class="card">
-      <h3>3. Offerings / Treasures</h3>
-      
-      <label for="offering1">Offering 1</label>
-      <select id="offering1" onchange="updateCalculator()"></select>
-      <label for="off1Grade">Offering 1 Grade</label>
-      <select id="off1Grade" onchange="updateCalculator()"></select>
-
-      <label for="offering2" style="margin-top:10px;">Offering 2</label>
-      <select id="offering2" onchange="updateCalculator()"></select>
-      <label for="off2Grade">Offering 2 Grade</label>
-      <select id="off2Grade" onchange="updateCalculator()"></select>
-
-      <label for="offering3" style="margin-top:10px;">Offering 3</label>
-      <select id="offering3" onchange="updateCalculator()"></select>
-      <label for="off3Grade">Offering 3 Grade</label>
-      <select id="off3Grade" onchange="updateCalculator()"></select>
+    <!-- Real-Time Output Panel -->
+    <div class="results-panel">
+      <div class="stat-box">
+        <h4>Base Stats</h4>
+        <p id="baseStats">2</p>
+      </div>
+      <div class="stat-box">
+        <h4>Items Stats (Max 12)</h4>
+        <p id="itemsStats">0</p>
+      </div>
+      <div class="stat-box">
+        <h4>Dao Bonus</h4>
+        <p id="daoBonus">+0</p>
+      </div>
+      <div class="stat-box">
+        <h4>Total Stat Points</h4>
+        <p id="totalStats">2</p>
+      </div>
+      <div class="stat-box">
+        <h4>Realm Gift Multiplier</h4>
+        <p id="giftMultiplier">1.00x</p>
+        <div id="capWarning" class="warning-text">Capped by Qi Spot!</div>
+      </div>
+      <div class="stat-box">
+        <h4>Foundation Tier</h4>
+        <p id="foundationTier" class="tier-tag">Common</p>
+      </div>
     </div>
   </div>
 
-  <!-- Real-Time Output Panel -->
-  <div class="results-panel">
-    <div class="stat-box">
-      <h4>Base Stats</h4>
-      <p id="baseStats">2</p>
-    </div>
-    <div class="stat-box">
-      <h4>Items Stats (Max 12)</h4>
-      <p id="itemsStats">0</p>
-    </div>
-    <div class="stat-box">
-      <h4>Dao Bonus</h4>
-      <p id="daoBonus">+0</p>
-    </div>
-    <div class="stat-box">
-      <h4>Total Stat Points</h4>
-      <p id="totalStats">2</p>
-    </div>
-    <div class="stat-box">
-      <h4>Realm Gift Multiplier</h4>
-      <p id="giftMultiplier">1.00x</p>
-      <div id="capWarning" class="warning-text">Capped by Qi Spot!</div>
-    </div>
-    <div class="stat-box">
-      <h4>Foundation Tier</h4>
-      <p id="foundationTier" class="tier-tag">Common</p>
-    </div>
-  </div>
 </div>
 
 <script>
