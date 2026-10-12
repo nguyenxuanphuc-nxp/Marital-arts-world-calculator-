@@ -294,22 +294,21 @@
       console.log("Successfully loaded items from items.json:", items);
     } catch (error) {
       console.warn("Could not load items.json, falling back to minimal default item list:", error);
-      // Minimal fallback so dropdowns never break if fetch fails
       items = [
-          { name: "None", realmId: 1, rarity: "Uncommon", baseGift: 0.00, baseStats: 0, isKey: false, isOffering: false }
-        ];
-      }
-  
-      // Always include a default "None" option if it's missing from your database
-      if (!items.some(item => item.name === "None")) {
-        items.unshift({ name: "None", realmId: 1, rarity: "Uncommon", baseGift: 0.00, baseStats: 0, isKey: false, isOffering: false });
-      }
-
-      initDropdowns();
+        { name: "None", realmId: 1, rarity: "Uncommon", baseGift: 0.00, baseStats: 0, isKey: false, isOffering: false }
+      ];
     }
+
+    if (!items.some(item => item.name === "None")) {
+      items.unshift({ name: "None", realmId: 1, rarity: "Uncommon", baseGift: 0.00, baseStats: 0, isKey: false, isOffering: false });
+    }
+
+    initDropdowns();
+  }
 
   function initDropdowns() {
     const realmSelect = document.getElementById("currentRealm");
+    realmSelect.innerHTML = "";
     realms.forEach(r => {
       let opt = document.createElement("option");
       opt.value = r.id;
@@ -318,6 +317,7 @@
     });
 
     const qiSelect = document.getElementById("qiSpot");
+    qiSelect.innerHTML = "";
     qiSpots.forEach((spot, idx) => {
       let opt = document.createElement("option");
       opt.value = idx;
@@ -328,6 +328,7 @@
     const gradeDropdowns = ["pillGrade", "key1Grade", "key2Grade", "off1Grade", "off2Grade", "off3Grade"];
     gradeDropdowns.forEach(id => {
       let select = document.getElementById(id);
+      select.innerHTML = "";
       Object.keys(gradeMultipliers).forEach(g => {
         let opt = document.createElement("option");
         opt.value = g;
@@ -368,8 +369,12 @@
     document.getElementById("keyItem1").innerText = currRealmObj.key1;
     document.getElementById("keyItem2").innerText = currRealmObj.key2;
 
-    // Filter Offerings (+2 Major Realms max)
-    const validOfferings = items.filter(item => item.realmId >= currRealmId && item.realmId <= currRealmId + 2);
+    // Filter Offerings (+2 Major Realms max + always allow "None")
+    const validOfferings = items.filter(item => 
+      item.name === "None" || 
+      (item.realmId >= currRealmId && item.realmId <= currRealmId + 2)
+    );
+
     ["offering1", "offering2", "offering3"].forEach(id => {
       let select = document.getElementById(id);
       let currentSelection = select.value;
@@ -377,7 +382,7 @@
       validOfferings.forEach(item => {
         let opt = document.createElement("option");
         opt.value = item.name;
-        opt.innerText = `${item.name} (${item.rarity})`;
+        opt.innerText = item.name === "None" ? "None" : `${item.name} (${item.rarity})`;
         select.appendChild(opt);
       });
       if (currentSelection && [...select.options].some(o => o.value === currentSelection)) {
@@ -385,7 +390,7 @@
       }
     });
 
-    // 1. Calculate Key Items Raw Stats (Halved at 50%)
+    // 1. Calculate Key Items Raw Stats
     const key1Grade = document.getElementById("key1Grade").value;
     const key2Grade = document.getElementById("key2Grade").value;
 
@@ -411,12 +416,11 @@
                            (o2Obj.baseStats * gradeMultipliers[off2Grade].statMult) +
                            (o3Obj.baseStats * gradeMultipliers[off3Grade].statMult);
 
-    // Combine Key + Offering into the Diminishing Pool (First 6 at 100%, next 6 at 50%, capped at 12)
+    // Combine Key + Offering into Diminishing Pool
     let combinedRawStats = rawKeyStats + rawOfferingStats;
     let effectiveItemStats = Math.min(6, combinedRawStats) + 0.5 * Math.max(0, Math.min(12, combinedRawStats - 6));
-    effectiveItemStats = Math.min(12, effectiveItemStats); // Cap at 12 max
+    effectiveItemStats = Math.min(12, effectiveItemStats);
 
-    // Round to whole integer (e.g., 2.5 -> 3, 1.2 -> 1)
     let roundedItemStats = Math.round(effectiveItemStats);
 
     // 3. Realm Gift & Foundation Tier
@@ -444,7 +448,7 @@
 
     let tier = getFoundationTier(finalGiftMultiplier);
 
-    // 4. Dao Tier Bonus (+5 extra stats)
+    // 4. Dao Tier Bonus
     let daoBonus = (tier === "Dao") ? 5 : 0;
 
     let totalStats = 2 + roundedItemStats + daoBonus;
