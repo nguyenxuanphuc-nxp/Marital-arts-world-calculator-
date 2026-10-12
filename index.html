@@ -278,7 +278,7 @@
         <li><b>Same Realm:</b> 100% Standard (1.00x)</li>
         <li><b>-1 Realm Below:</b> -35% Penalty (0.65x)</li>
         <li><b>-2 Realms Below:</b> -70% Penalty (0.30x)</li>
-        <li><b>-3+ Realms Below:</b> Unusable (0.00x)</li>
+        <li><b>-3+ Realms Below:</b> 0.25x Floor Cap (25% Min Value)</li>
       </ul>
 
       <p><b>Item Stat Cap:</b> Item stats stack linearly up to 6 points, then suffer a 50% diminishing return up to a max of <b>12 Stats</b>. A maximum of 19 stats points can be obtained.</p>
@@ -521,7 +521,7 @@
     if (diff === 0) return 1.00;   // Same Realm: Normal
     if (diff === -1) return 0.65;  // 1 Realm Below: -35%
     if (diff === -2) return 0.30;  // 2 Realms Below: -70%
-    return 0.00;                  // 3+ Realms Below: 0%
+    return 0.25;                  // 3+ Realms Below: Capped at 0.25 (25% floor)
   }
 
   // ==========================================
@@ -538,11 +538,10 @@
     document.getElementById("keyItem1").innerText = currRealmObj.key1;
     document.getElementById("keyItem2").innerText = currRealmObj.key2;
 
-    // Filter Offerings (Allow items from 2 realms below up to 2 realms above + "None")
+    // Filter Offerings (Allow all offering items regardless of realm distance)
     const validOfferings = items.filter(item => {
-      const rId = item.realmId ?? item.realmid ?? 1;
       const isOff = item.isOffering ?? true;
-      return item.name === "None" || (isOff && rId >= currRealmId - 2 && rId <= currRealmId + 2);
+      return item.name === "None" || isOff;
     });
 
     ["offering1", "offering2", "offering3"].forEach(id => {
@@ -573,7 +572,7 @@
     let keyGiftBonus = 0.5 * ((k1Obj.baseGift * gradeMultipliers[key1Grade].giftMult) + 
                              (k2Obj.baseGift * gradeMultipliers[key2Grade].giftMult));
 
-    // 2. Calculate Offerings Raw Stats with Realm Modifier (+50%, +25%, 0%, -35%, -70%)
+    // 2. Calculate Offerings Raw Stats with Realm Modifier (+50%, +25%, 0%, -35%, -70%, floor at 0.25)
     const off1Name = document.getElementById("offering1").value;
     const off1Grade = document.getElementById("off1Grade").value;
     const off2Name = document.getElementById("offering2").value;
