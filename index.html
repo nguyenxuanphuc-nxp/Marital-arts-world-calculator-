@@ -312,7 +312,8 @@
     <details>
       <summary>⚡ 5. Efficiency & Foundation Remake</summary>
       <p><b>Efficiency Percentage:</b> Measures how close your setup is to reaching the absolute maximum Realm Gift potential for your current breakthrough level (Current Realm Gift ÷ Max Realm Gift Potential).</p>
-      <p><i>Note: Maxing out Realm Gifts is intended to be accomplished via <b>Foundation Remake</b> (re-forging your base after reaching higher realms) rather than trying to hit maximum potential on your very first initial breakthrough.</i></p>
+      <p><b>Foundation Remake Trade-off:</b> When remaking a foundation, the Realm Gift comes strictly from <b>3 offerings</b> — you cannot use key items or a core pill anymore. Remaking a foundation is a strategic trade-off where you sacrifice the gifts from core pills and key items to offer 3 far higher-grade treasures for a superior realm gift.</p>
+      <p><i>Note: To calculate the absolute maximum realm gift achievable when remaking your foundation, please refer to the upcoming <b>Dao Remake Calculator (W.I.P)</b>.</i></p>
     </details>
 
     <details>
@@ -415,7 +416,7 @@
       </div>
       <div class="stat-box">
         <h4>Efficiency</h4>
-        <p id="efficiency">12.35%</p>
+        <p id="efficiency">100.00%</p>
       </div>
       <div class="stat-box">
         <h4>Foundation Tier</h4>
@@ -448,12 +449,12 @@
   const maxRealmsGifts = {
     1: 8.10,
     2: 8.10,
-    3: 8.61,
-    4: 7.73,
+    3: 8.613,
+    4: 7.734,
     5: 9.00,
-    6: 7.97,
+    6: 7.965,
     7: 10.44,
-    8: 8.57,
+    8: 8.565,
     9: 6.99
   };
 
@@ -677,6 +678,11 @@
     let rawOfferingStats = (o1Obj.baseStats * gradeMultipliers[off1Grade].statMult) +
                            (o2Obj.baseStats * gradeMultipliers[off2Grade].statMult) +
                            (o3Obj.baseStats * gradeMultipliers[off3Grade].statMult);
+
+    // FE Breakthrough (R1 -> R2) gives a 1.5x stat point multiplier on offerings
+    if (currRealmId === 1) {
+      rawOfferingStats *= 1.5;
+    }
 
     // Combine Key + Offering into Diminishing Pool
     let combinedRawStats = rawKeyStats + rawOfferingStats;
