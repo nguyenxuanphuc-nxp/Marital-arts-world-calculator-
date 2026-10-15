@@ -27,7 +27,6 @@
       justify-content: center;
     }
 
-    /* Main Container Split into Side-by-Side Flex Layout */
     .main-wrapper {
       display: flex;
       flex-wrap: wrap;
@@ -37,7 +36,6 @@
       align-items: flex-start;
     }
 
-    /* Left Side Guide Panel */
     .guide-panel {
       flex: 1 1 380px;
       max-width: 440px;
@@ -50,7 +48,6 @@
       overflow-y: auto;
     }
 
-    /* Right Side Calculator Panel */
     .calculator-panel {
       flex: 2 1 600px;
       background: var(--card-bg);
@@ -72,19 +69,10 @@
     h1 { font-size: 1.8rem; }
     h2 { font-size: 1.4rem; border-bottom: 1px solid var(--card-border); padding-bottom: 8px; }
 
-    /* Custom Scrollbar for Guide Panel */
-    .guide-panel::-webkit-scrollbar {
-      width: 6px;
-    }
-    .guide-panel::-webkit-scrollbar-track {
-      background: var(--input-bg);
-    }
-    .guide-panel::-webkit-scrollbar-thumb {
-      background: var(--card-border);
-      border-radius: 4px;
-    }
+    .guide-panel::-webkit-scrollbar { width: 6px; }
+    .guide-panel::-webkit-scrollbar-track { background: var(--input-bg); }
+    .guide-panel::-webkit-scrollbar-thumb { background: var(--card-border); border-radius: 4px; }
 
-    /* Collapsible Accordion Sections in Guide */
     details {
       background: var(--input-bg);
       border: 1px solid var(--card-border);
@@ -111,7 +99,6 @@
 
     details ul { padding-left: 18px; }
 
-    /* Guide Tables */
     .guide-table {
       width: 100%;
       border-collapse: collapse;
@@ -123,12 +110,8 @@
       padding: 6px 8px;
       text-align: left;
     }
-    .guide-table th {
-      background: var(--card-bg);
-      color: var(--gold-color);
-    }
+    .guide-table th { background: var(--card-bg); color: var(--gold-color); }
 
-    /* Calculator Grid */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -141,6 +124,7 @@
       padding: 16px;
       border-radius: 8px;
       border: 1px solid var(--card-border);
+      transition: opacity 0.2s ease;
     }
 
     .card h3 {
@@ -169,10 +153,8 @@
       border-radius: 6px;
       font-size: 0.88rem;
       outline: none;
-      max-height: 200px;
     }
 
-    /* Dropdown Optgroup & Option Styling */
     optgroup {
       background-color: #241317;
       color: var(--gold-color);
@@ -184,10 +166,6 @@
       background-color: var(--input-bg);
       color: var(--ivory-text);
       padding: 6px;
-    }
-
-    select:focus {
-      border-color: var(--gold-color);
     }
 
     .results-panel {
@@ -234,6 +212,51 @@
       margin-top: 4px;
       display: none;
     }
+
+    /* Mode Switcher Buttons */
+    .mode-toggle {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+      justify-content: center;
+    }
+
+    .mode-btn {
+      flex: 1;
+      padding: 10px 16px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: var(--ivory-text);
+      background: var(--input-bg);
+      border: 1.5px solid var(--card-border);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .mode-btn:hover {
+      border-color: var(--gold-color);
+    }
+
+    .mode-btn.active {
+      background: linear-gradient(135deg, #3d171e 0%, #991b1b 100%);
+      border-color: var(--gold-color);
+      color: #ffffff;
+      box-shadow: 0 0 12px rgba(251, 191, 36, 0.3);
+    }
+
+    .remake-notice {
+      background: rgba(153, 27, 27, 0.25);
+      border: 1px solid var(--accent-red);
+      color: var(--ivory-text);
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      margin-bottom: 16px;
+      display: none;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -246,11 +269,36 @@
     
     <details>
       <summary>🌌 1. Breakthrough Mechanics</summary>
-      <p>Advancing to higher cultivation realms requires three core elements:</p>
+      <p>When your cultivation bar reaches 100% at the peak of a realm (level 10, 20, 30, etc.), you must perform a breakthrough to advance.</p>
+
+      <p><b>Required Materials:</b></p>
       <ul>
-        <li><b>Core Pill:</b> Mandatory item. Pill grade increases your Realm Gift Multiplier.</li>
-        <li><b>Key Items:</b> Specific realm requirements. Key items yield <b>50% stat points</b> and <b>100% full gift value</b>.</li>
-        <li><b>Offerings:</b> Up to 3 additional treasures sacrificed to boost stat points and gift multiplier.</li>
+        <li><b>Core Pill:</b> Required. Bought from Alchemist NPCs (up to High-Grade) or refined/dropped by bosses (up to Emperor-Grade).</li>
+        <li><b>Key Items:</b> Required (1-2 per realm). Hover over the item in the cultivation tab to see dropping bosses (33% drop rate). Gives 50% stat points & 100% gift multiplier.</li>
+        <li><b>Offerings:</b> Optional (up to 3 treasures). Sacrificed to boost stat points and gift multiplier.</li>
+      </ul>
+
+      <p><b>Stat Points & Realm Gift Scaling:</b></p>
+      <ul>
+        <li><b>Base Gains:</b> Every breakthrough grants <b>+2 Stat Points</b> and <b>a realm gift of +7 health, +5 qi and + 1.2% damage at the base realm gift value of x1</b>.</li>
+        <li><b>Treasure Boosts:</b> Higher rarity, higher grade, or higher-realm items grant more stats and gift value (up to +50% for higher-realm items).</li>
+        <li><b>Max Stat Cap:</b> Capped at <b>19 Stat Points</b> max per breakthrough (2 Base + 12 max from items + 5 from Dao Tier).</li>
+      </ul>
+
+      <p><b>Example Breakdown (Qi Refining → Foundation Establishment):</b></p>
+      <p>Setup: Low-Grade Core Pill, High-Grade Key Item, and 3x Low-Grade Epic Treasures (+2 Realms above).</p>
+      <ul>
+        <li><b>Core Pill (Low-Grade):</b> +0.00x</li>
+        <li><b>Key Item (High-Grade Scarback Tusk):</b> +0.224x <i>(0.14 base × 1.60 grade factor)</i></li>
+        <li><b>Offerings (3x Low-Grade Epics +2 Realms):</b> +0.990x <i>(0.22 base × 1.0 grade factor × 1.50 +2 Realm modifier × 3 items)</i></li>
+        <li><b>Tribulation Bonus:</b> +0.250x <i>(Active for 2+ Rare/Epic offerings in R1)</i></li>
+      </ul>
+      <p><b>Total Realm Gift Multiplier:</b> 1.00 (Base) + 0.00 + 0.224 + 0.990 + 0.250 = <b>2.464x</b></p>
+      <p><b>Converted Breakthrough Stat Gain:</b></p>
+      <ul>
+        <li><b>Health Gain:</b> +17.25 HP (2.464 × 7)</li>
+        <li><b>Qi Gain:</b> +12.32 Qi (2.464 × 5)</li>
+        <li><b>Damage Gain:</b> +2.96% Damage (2.464 × 1.2%)</li>
       </ul>
     </details>
 
@@ -286,7 +334,7 @@
         </tbody>
       </table>
 
-      <p><b>Attribute Grade Factors:</b></p>
+      <p><b>Stat Points Grade Factors:</b></p>
       <ul>
         <li><b>Low:</b> 1.0x</li>
         <li><b>Mid:</b> 1.5x</li>
@@ -295,30 +343,60 @@
         <li><b>Emperor:</b> 3.0x</li>
       </ul>
 
-      <p><b>Special Breakthrough Rules:</b></p>
+      <p><b>Realm Gift Grade Factors:</b></p>
       <ul>
-        <li><b>Foundation Establishment (R1 → R2):</b> Offerings receive a special <b>1.5x Stat Point Multiplier</b>.</li>
+        <li><b>Low:</b> 1.0x</li>
+        <li><b>Mid:</b> 1.25x</li>
+        <li><b>High:</b> 1.6x</li>
+        <li><b>Heaven:</b> 2.2x</li>
+        <li><b>Emperor:</b> 3.0x</li>
       </ul>
 
-      <p><b>Item Stat Cap:</b> Item stats stack linearly up to 6 points, then suffer a 50% diminishing return up to a max of <b>12 Stats</b>. A maximum of 19 stats points can be obtained with Dao bonus (2 Base + 12 Items + 5 Dao).</p>
+      <p><b>Special Breakthrough Rules:</b></p>
+      <ul>
+        <li><b>Foundation Establishment (R1 → R2):</b> Offerings receive a special <b>1.5x Stat Point Multiplier</b> for stat point calculations.</li>
+        <li><b>Qi Refining Treasury Access:</b> Qi Refining (R1) players can offer treasures from <b>any realm</b> (other realms are restricted to selecting offerings within ±2 realms).</li>
+      </ul>
+
+      <p><b>Item Stat Cap & Diminishing Returns:</b></p>
+      <ul>
+        <li><b>0 to 6 Stats:</b> Every stat point gained gives full <b>+1 Stat Point</b>.</li>
+        <li><b>Above 6 Stats:</b> Stat points suffer a <b>50% penalty</b> (every 2 stat points give only <b>+1 Stat Point</b>).</li>
+        <li><b>Hard Cap:</b> You can gain a maximum of <b>12 Stat Points</b> from items.</li>
+        <li><b>Maximum Ceiling:</b> Reaching the cap grants <b>19 Total Stat Points</b> (2 Base + 12 Items + 5 Dao Tier Bonus).</li>
+      </ul>
     </details>
 
     <details>
-      <summary>💡 4. How to Use</summary>
+      <summary>💡 4. How to Use & Efficiency</summary>
       <ul>
         <li>1. Select your <b>Current Realm</b> (e.g., Qi Refining is R1, Foundation Establishment is R2, Qi Condensation is R3, etc.).</li>
         <li>2. Pick your <b>Qi Spot</b> location and <b>Pill Grade</b>.</li>
         <li>3. Set key items grades (<i>Low, Mid, High, Heaven, Emperor</i>).</li>
         <li>4. Choose up to 3 <b>Offerings</b> and their grades. You can type the first few letters of an offering to quickly select it.</li>
-        <li>5. Read real-time stats, gift multiplier, and foundation tier! Use this calculator to maximize your breakthrough!</li>
+        <li>5. Read real-time stats, gift multiplier, and foundation tier!</li>
       </ul>
+      <p><b>Efficiency Percentage:</b> Measures how close your setup is to reaching the absolute maximum Realm Gift potential for your current breakthrough level (Current Realm Gift ÷ Max Realm Gift Potential).</p>
     </details>
 
     <details>
-      <summary>⚡ 5. Efficiency & Foundation Remake</summary>
-      <p><b>Efficiency Percentage:</b> Measures how close your setup is to reaching the absolute maximum Realm Gift potential for your current breakthrough level (Current Realm Gift ÷ Max Realm Gift Potential).</p>
-      <p><b>Foundation Remake Trade-off:</b> When remaking a foundation, the Realm Gift comes strictly from <b>3 offerings</b> — you cannot use key items or a core pill anymore. Remaking a foundation is a strategic trade-off where you sacrifice the gifts from core pills and key items to offer 3 far higher-grade treasures for a superior realm gift.</p>
-      <p><i>Note: To calculate the absolute maximum realm gift achievable when remaking your foundation, please refer to the upcoming <b>Dao Remake Calculator (W.I.P)</b>.</i></p>
+      <summary>⚡ 5. Foundation Remake</summary>
+      <p><b>How to Remake a Foundation:</b></p>
+      <p>If you are unsatisfied with your foundation's realm gift, you can remake each realm's foundation <b>once</b> using a specialized pill:</p>
+      <ul>
+        <li><b>Earth Tier & Below:</b> Requires a <b>Foundation Remake Pill</b> (rare boss drop or crafted by high-level Alchemists).</li>
+        <li><b>Heaven & Dao Tiers:</b> Requires a <b>Dao Remake Pill</b> (1% drop rate from level 71+ bosses in Region 2, Part 2).</li>
+      </ul>
+
+      <p><b>Remake Mechanics:</b></p>
+      <p>Remaking allows you to replace a weak or botched earlier breakthrough with a significantly stronger foundation. During a remake:</p>
+      <ul>
+        <li>You <b>forfeit</b> all stats and realm gift multipliers originally gained from the core pill and key items.</li>
+        <li>Your new realm gift is calculated <b>strictly from 3 offerings</b> (e.g., sacrificing three Heaven or Emperor-Grade Mythic treasures from higher realms).</li>
+      </ul>
+      <p><i>To compute your exact output, switch to <b>Foundation Remake Mode</b> using the toggle button above.</i></p>
+
+      <p><b>⚠️ Warning:</b> As of the current update, every major realm's foundation can only be remade <b>a single time</b>. Choose your offerings carefully before confirming!</p>
     </details>
 
     <details>
@@ -332,6 +410,15 @@
   <!-- RIGHT PANEL: Calculator Tool -->
   <div class="calculator-panel">
     <h1>✨ Martial Arts World Breakthrough Calculator ⚡</h1>
+
+    <div class="mode-toggle">
+      <button id="btnStandardMode" class="mode-btn active" onclick="setCalculatorMode('standard')">Standard Breakthrough Mode</button>
+      <button id="btnRemakeMode" class="mode-btn" onclick="setCalculatorMode('remake')">⚡ Foundation Remake Mode</button>
+    </div>
+
+    <div id="remakeNotice" class="remake-notice">
+      ⚡ <b>Foundation Remake Mode Active:</b> Core Pill & Key Items are <b>forfeited</b>. Realm Gift & Stats are calculated strictly from your 3 offerings!
+    </div>
 
     <div class="grid">
       <!-- 1. Realm & Location Qi -->
@@ -355,7 +442,7 @@
       </div>
 
       <!-- 2. Key Items -->
-      <div class="card">
+      <div class="card" id="keyItemsCard">
         <h3>2. Key Items</h3>
         
         <label>Key Item 1</label>
@@ -392,7 +479,7 @@
       </div>
     </div>
 
-    <!-- Real-Time Output Panel (Swapped Realm Gift Multiplier & Tribulation) -->
+    <!-- Real-Time Output Panel -->
     <div class="results-panel">
       <div class="stat-box">
         <h4>Base Stats</h4>
@@ -450,17 +537,8 @@
     { id: 10, name: "Immortal", pill: "Max Realm", key1: "None", key2: "None", key1Rarity: "Uncommon", key2Rarity: "Uncommon" }
   ];
 
-  // Best Possible Realm Gift Reference Table for Efficiency Calculations
   const maxRealmsGifts = {
-    1: 8.10,
-    2: 8.10,
-    3: 8.613,
-    4: 7.734,
-    5: 9.00,
-    6: 7.965,
-    7: 10.44,
-    8: 8.565,
-    9: 6.99
+    1: 8.10, 2: 8.10, 3: 8.613, 4: 7.734, 5: 9.00, 6: 7.965, 7: 10.44, 8: 8.565, 9: 6.99
   };
 
   const qiSpots = [
@@ -497,20 +575,16 @@
 
   let items = [];
 
-  // ===================================================
+  // ==========================================
   // INITIALIZATION
-  // ===================================================
+  // ==========================================
 
   async function loadItemsAndInit() {
     try {
       const response = await fetch('items.json');
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       items = await response.json();
-      console.log("Successfully loaded items from items.json:", items);
     } catch (error) {
-      console.warn("Could not load items.json, falling back to minimal default item list:", error);
       items = [
         { name: "None", realmId: 1, rarity: "Uncommon", baseGift: 0.00, baseStats: 0, isKey: false, isOffering: false }
       ];
@@ -549,7 +623,6 @@
       Object.keys(gradeMultipliers).forEach(g => {
         let opt = document.createElement("option");
         opt.value = g;
-        // Capitalize first letter of grade display name
         opt.innerText = g.charAt(0).toUpperCase() + g.slice(1);
         select.appendChild(opt);
       });
@@ -575,17 +648,43 @@
 
   function getRealmModifierMult(itemRealmId, currRealmId) {
     const diff = itemRealmId - currRealmId;
-    if (diff >= 2) return 1.50;    // 2 or more Realms Above: +50%
-    if (diff === 1) return 1.25;   // 1 Realm Above: +25%
-    if (diff === 0) return 1.00;   // Same Realm: Normal
-    if (diff === -1) return 0.65;  // 1 Realm Below: -35%
-    if (diff === -2) return 0.30;  // 2 Realms Below: -70%
-    return 0.25;                  // 3+ Realms Below: Capped at 0.25
+    if (diff >= 2) return 1.50;
+    if (diff === 1) return 1.25;
+    if (diff === 0) return 1.00;
+    if (diff === -1) return 0.65;
+    if (diff === -2) return 0.30;
+    return 0.25;
   }
 
   // ==========================================
   // CALCULATOR LOGIC
   // ==========================================
+
+  let calcMode = 'standard'; // 'standard' or 'remake'
+
+  function setCalculatorMode(mode) {
+    calcMode = mode;
+    document.getElementById("btnStandardMode").classList.toggle("active", mode === 'standard');
+    document.getElementById("btnRemakeMode").classList.toggle("active", mode === 'remake');
+    
+    const keyCard = document.getElementById("keyItemsCard");
+    const pillGradeSelect = document.getElementById("pillGrade");
+    const modeNotice = document.getElementById("remakeNotice");
+
+    if (mode === 'remake') {
+      if (keyCard) keyCard.style.opacity = "0.45";
+      if (keyCard) keyCard.style.pointerEvents = "none";
+      if (pillGradeSelect) pillGradeSelect.disabled = true;
+      if (modeNotice) modeNotice.style.display = "block";
+    } else {
+      if (keyCard) keyCard.style.opacity = "1.0";
+      if (keyCard) keyCard.style.pointerEvents = "auto";
+      if (pillGradeSelect) pillGradeSelect.disabled = false;
+      if (modeNotice) modeNotice.style.display = "none";
+    }
+
+    updateCalculator();
+  }
 
   function updateCalculator() {
     const currRealmId = parseInt(document.getElementById("currentRealm").value);
@@ -597,9 +696,19 @@
     document.getElementById("keyItem1").innerText = currRealmObj.key1;
     document.getElementById("keyItem2").innerText = currRealmObj.key2;
 
-    // Filter Offerings: Qi Refining (R1) sees up to Realm 4 (Golden Core); all other realms see -2 to +2 realms
-    const minRealm = (currRealmId === 1) ? 1 : Math.max(1, currRealmId - 2);
-    const maxRealm = (currRealmId === 1) ? 4 : Math.min(realms.length, currRealmId + 2);
+    // Filter Offerings: In Remake Mode for Qi Refining (R1), show offerings from R3 to R8.
+    // In Standard Mode: R1 sees R1 to R4; all other realms see -2 to +2 realms.
+    let minRealm, maxRealm;
+    if (calcMode === 'remake' && currRealmId === 1) {
+      minRealm = 3;
+      maxRealm = 8;
+    } else if (currRealmId === 1) {
+      minRealm = 1;
+      maxRealm = 4;
+    } else {
+      minRealm = Math.max(1, currRealmId - 2);
+      maxRealm = Math.min(realms.length, currRealmId + 2);
+    }
 
     const validOfferings = items.filter(item => {
       const rId = item.realmId ?? item.realmid ?? 1;
@@ -612,13 +721,11 @@
       let currentSelection = select.value;
       select.innerHTML = "";
 
-      // 1. None option
       let noneOpt = document.createElement("option");
       noneOpt.value = "None";
       noneOpt.innerText = "None";
       select.appendChild(noneOpt);
 
-      // 2. Group items into <optgroup> headers above their respective items
       for (let r = minRealm; r <= maxRealm; r++) {
         const realmItems = validOfferings.filter(item => {
           const itemRId = item.realmId ?? item.realmid ?? 1;
@@ -626,6 +733,17 @@
         });
 
         if (realmItems.length > 0) {
+          // Sort offerings within each realm group from Low to High rarity / quality
+          realmItems.sort((a, b) => {
+            let rA = rarityRank[a.rarity] || 1;
+            let rB = rarityRank[b.rarity] || 1;
+            if (rA !== rB) return rA - rB; // Low to High
+            let gA = a.baseGift ?? 0;
+            let gB = b.baseGift ?? 0;
+            if (gA !== gB) return gA - gB;
+            return a.name.localeCompare(b.name);
+          });
+
           const rObj = realms.find(realm => realm.id === r);
           const rName = rObj ? rObj.name : `Realm ${r}`;
 
@@ -664,6 +782,12 @@
     let keyGiftBonus = (k1Obj.baseGift * gradeMultipliers[key1Grade].giftMult * m_k1) + 
                        (k2Obj.baseGift * gradeMultipliers[key2Grade].giftMult * m_k2);
 
+    // In Foundation Remake Mode, Core Pill and Key Items are forfeited (0 stats & 0 gift multiplier)
+    if (calcMode === 'remake') {
+      rawKeyStats = 0;
+      keyGiftBonus = 0;
+    }
+
     // 2. Calculate Offerings Raw Stats & Gifts
     const off1Name = document.getElementById("offering1").value;
     const off1Grade = document.getElementById("off1Grade").value;
@@ -684,12 +808,8 @@
                            (o2Obj.baseStats * gradeMultipliers[off2Grade].statMult) +
                            (o3Obj.baseStats * gradeMultipliers[off3Grade].statMult);
 
-    // FE Breakthrough (R1 -> R2) gives a 1.5x stat point multiplier on offerings
-    if (currRealmId === 1) {
-      rawOfferingStats *= 1.5;
-    }
+    if (currRealmId === 1) rawOfferingStats *= 1.5;
 
-    // Combine Key + Offering into Diminishing Pool
     let combinedRawStats = rawKeyStats + rawOfferingStats;
     let effectiveItemStats = Math.min(6, combinedRawStats) + 0.5 * Math.max(0, Math.min(12, combinedRawStats - 6));
     effectiveItemStats = Math.min(12, effectiveItemStats);
@@ -702,13 +822,10 @@
     const rareOrHigherCount = selectedOfferings.filter(o => (rarityRank[o.rarity] || 1) >= 2).length;
 
     if (currRealmId >= 4) {
-      // Golden Core and above always trigger tribulation
       tribulationActive = true;
     } else if (currRealmId === 1) {
-      // R1 -> R2 triggers if at least 2 Rare or higher offerings are present
       tribulationActive = (rareOrHigherCount >= 2);
     } else if (currRealmId === 2 || currRealmId === 3) {
-      // R2 -> R3 and R3 -> R4 trigger if at least 1 Rare or higher offering is present
       tribulationActive = (rareOrHigherCount >= 1);
     }
 
@@ -716,7 +833,7 @@
 
     // 4. Realm Gift Calculation
     const pillGrade = document.getElementById("pillGrade").value;
-    let pillGiftBonus = pillGradeGifts[pillGrade];
+    let pillGiftBonus = (calcMode === 'remake') ? 0 : pillGradeGifts[pillGrade];
 
     let offeringsGift = (o1Obj.baseGift * gradeMultipliers[off1Grade].giftMult * m1) +
                         (o2Obj.baseGift * gradeMultipliers[off2Grade].giftMult * m2) +
@@ -729,7 +846,6 @@
 
     let finalGiftMultiplier = Math.min(uncappedGiftMultiplier, selectedQiSpot.cap);
 
-    // Toggle Cap Warning
     const capWarning = document.getElementById("capWarning");
     if (uncappedGiftMultiplier > selectedQiSpot.cap) {
       capWarning.style.display = "block";
@@ -738,18 +854,13 @@
     }
 
     let tier = getFoundationTier(finalGiftMultiplier);
-
-    // 5. Dao Tier Bonus
     let daoBonus = (tier === "Dao") ? 5 : 0;
-
     let totalStats = 2 + roundedItemStats + daoBonus;
 
-    // 6. Efficiency Calculation
     let maxPotentialGift = maxRealmsGifts[currRealmId] || 8.10;
     let efficiencyPct = (uncappedGiftMultiplier / maxPotentialGift) * 100;
-    efficiencyPct = Math.min(100, efficiencyPct); // Cap display at 100%
+    efficiencyPct = Math.min(100, efficiencyPct);
 
-    // Update UI Elements
     document.getElementById("itemsStats").innerText = roundedItemStats;
     document.getElementById("daoBonus").innerText = `+${daoBonus}`;
     document.getElementById("totalStats").innerText = totalStats;
