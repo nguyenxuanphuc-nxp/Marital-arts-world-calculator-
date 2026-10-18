@@ -168,6 +168,14 @@
       padding: 6px;
     }
 
+    .item-subtext {
+      font-size: 0.75rem;
+      color: #38bdf8;
+      font-weight: bold;
+      margin-top: 3px;
+      margin-bottom: 6px;
+    }
+
     .results-panel {
       background: linear-gradient(135deg, #2a080c 0%, #12090b 100%);
       border: 1.5px solid var(--gold-color);
@@ -280,7 +288,7 @@
 
       <p><b>Stat Points & Realm Gift Scaling:</b></p>
       <ul>
-        <li><b>Base Gains:</b> Every breakthrough grants <b>+2 Stat Points</b> and <b>a realm gift of +7 health, +5 qi and + 1.2% damage at the base realm gift value of x1</b>.</li>
+        <li><b>Base Gains:</b> Every breakthrough grants <b>+2 Stat Points</b> and <b>a realm gift of +7 health, +5 qi and +1.2% damage at the base realm gift value of x1</b>.</li>
         <li><b>Treasure Boosts:</b> Higher rarity, higher grade, or higher-realm items grant more stats and gift value (up to +50% for higher-realm items).</li>
         <li><b>Max Stat Cap:</b> Capped at <b>19 Stat Points</b> max per breakthrough (2 Base + 12 max from items + 5 from Dao Tier).</li>
       </ul>
@@ -352,10 +360,10 @@
         <li><b>Emperor:</b> 3.0x</li>
       </ul>
 
-      <p><b>Special Breakthrough Rules:</b></p>
+      <p><b>Breakthrough Range Restrictions:</b></p>
       <ul>
+        <li><b>Standard Breakthrough:</b> Restricted to offerings within <b>±2 realms</b> of your current realm for all breakthroughs.</li>
         <li><b>Foundation Establishment (R1 → R2):</b> Offerings receive a special <b>1.5x Stat Point Multiplier</b> for stat point calculations.</li>
-        <li><b>Qi Refining Treasury Access:</b> Qi Refining (R1) players can offer treasures from <b>any realm</b> (other realms are restricted to selecting offerings within ±2 realms).</li>
       </ul>
 
       <p><b>Item Stat Cap & Diminishing Returns:</b></p>
@@ -392,7 +400,8 @@
       <p>Remaking allows you to replace a weak or botched earlier breakthrough with a significantly stronger foundation. During a remake:</p>
       <ul>
         <li>You <b>forfeit</b> all stats and realm gift multipliers originally gained from the core pill and key items.</li>
-        <li>Your new realm gift is calculated <b>strictly from 3 offerings</b> (e.g., sacrificing three Heaven or Emperor-Grade Mythic treasures from higher realms).</li>
+        <li>Your new realm gift is calculated <b>strictly from 3 offerings</b>.</li>
+        <li>Unlike standard breakthroughs, Foundation Remakes allow you to offer treasures from <b>your current realm up to 5 realms above</b>!</li>
       </ul>
       <p><i>To compute your exact output, switch to <b>Foundation Remake Mode</b> using the toggle button above.</i></p>
 
@@ -439,6 +448,7 @@
 
         <label for="pillGrade">Pill Grade</label>
         <select id="pillGrade" onchange="updateCalculator()"></select>
+        <div id="pillSubtext" class="item-subtext">+0.00x Gift</div>
       </div>
 
       <!-- 2. Key Items -->
@@ -450,12 +460,14 @@
 
         <label for="key1Grade">Key Item 1 Grade</label>
         <select id="key1Grade" onchange="updateCalculator()"></select>
+        <div id="key1Subtext" class="item-subtext">+0.00x Gift | +0.0 Stats</div>
 
         <label>Key Item 2</label>
         <div id="keyItem2" class="auto-field">-</div>
 
         <label for="key2Grade">Key Item 2 Grade</label>
         <select id="key2Grade" onchange="updateCalculator()"></select>
+        <div id="key2Subtext" class="item-subtext">+0.00x Gift | +0.0 Stats</div>
       </div>
 
       <!-- 3. Offerings / Treasures -->
@@ -466,16 +478,19 @@
         <select id="offering1" onchange="updateCalculator()"></select>
         <label for="off1Grade">Offering 1 Grade</label>
         <select id="off1Grade" onchange="updateCalculator()"></select>
+        <div id="off1Subtext" class="item-subtext">+0.00x Gift | +0.0 Stats</div>
 
         <label for="offering2" style="margin-top:8px;">Offering 2</label>
         <select id="offering2" onchange="updateCalculator()"></select>
         <label for="off2Grade">Offering 2 Grade</label>
         <select id="off2Grade" onchange="updateCalculator()"></select>
+        <div id="off2Subtext" class="item-subtext">+0.00x Gift | +0.0 Stats</div>
 
         <label for="offering3" style="margin-top:8px;">Offering 3</label>
         <select id="offering3" onchange="updateCalculator()"></select>
         <label for="off3Grade">Offering 3 Grade</label>
         <select id="off3Grade" onchange="updateCalculator()"></select>
+        <div id="off3Subtext" class="item-subtext">+0.00x Gift | +0.0 Stats</div>
       </div>
     </div>
 
@@ -532,7 +547,7 @@
     { id: 5, name: "Origin Spirit", pill: "Nascent Soul Fruit", key1: "Nine-Lantern Foxfire Bead", key2: "Khan Temur's Golden Seal", key1Rarity: "Epic", key2Rarity: "Epic" },
     { id: 6, name: "Nascent Soul", pill: "Soul Formation Pill", key1: "Old Thunderhoof's Storm Horn", key2: "Roc Matriarch's Plume", key1Rarity: "Epic", key2Rarity: "Epic" },
     { id: 7, name: "Soul Formation", pill: "Dao-seeking Tea", key1: "Kulong's Withered Spine", key2: "Heart-Demon Core", key1Rarity: "Mythic", key2Rarity: "Mythic" },
-    { id: 8, name: "Dao-Seeking", pill: "Feather Ascension Pill", key1: "Heart of the Burning Vein", key2: "The Ninth Banner's Seal", key1Rarity: "Legendary", key2Rarity: "Legendary" },
+    { id: 8, name: "Dao-Seeking", pill: "Feather Ascension Pill", key1: "The Ninth Banner's Seal", key2: "The Ninth Banner's Seal", key1Rarity: "Legendary", key2Rarity: "Legendary" },
     { id: 9, name: "Ascension", pill: "Placeholder pill", key1: "The Ninth Gate Mandate", key2: "None", key1Rarity: "Mythic", key2Rarity: "Uncommon" },
     { id: 10, name: "Immortal", pill: "Max Realm", key1: "None", key2: "None", key1Rarity: "Uncommon", key2Rarity: "Uncommon" }
   ];
@@ -593,6 +608,17 @@
     if (!items.some(item => item.name === "None")) {
       items.unshift({ name: "None", realmId: 1, rarity: "Uncommon", baseGift: 0.00, baseStats: 0, isKey: false, isOffering: false });
     }
+
+    // Add/Update Special Quest Items
+    const ninthBannerIndex = items.findIndex(i => i.name === "The Ninth Banner's Seal");
+    const ninthBannerObj = { name: "The Ninth Banner's Seal", realmId: 8, rarity: "Legendary", baseGift: 0.32, baseStats: 1, isKey: true, isOffering: false, isQuest: true };
+    if (ninthBannerIndex >= 0) items[ninthBannerIndex] = ninthBannerObj;
+    else items.push(ninthBannerObj);
+
+    const ninthGateIndex = items.findIndex(i => i.name === "The Ninth Gate Mandate");
+    const ninthGateObj = { name: "The Ninth Gate Mandate", realmId: 9, rarity: "Mythic", baseGift: 0.46, baseStats: 2, isKey: true, isOffering: false, isQuest: true };
+    if (ninthGateIndex >= 0) items[ninthGateIndex] = ninthGateObj;
+    else items.push(ninthGateObj);
 
     initDropdowns();
   }
@@ -696,15 +722,13 @@
     document.getElementById("keyItem1").innerText = currRealmObj.key1;
     document.getElementById("keyItem2").innerText = currRealmObj.key2;
 
-    // Filter Offerings: In Remake Mode for Qi Refining (R1), show offerings from R3 to R8.
-    // In Standard Mode: R1 sees R1 to R4; all other realms see -2 to +2 realms.
+    // Filter Offerings:
+    // In Remake Mode: Current Realm up to 5 realms above (currRealmId to currRealmId + 5)
+    // In Standard Mode: ±2 realms relative to current realm for all realms
     let minRealm, maxRealm;
-    if (calcMode === 'remake' && currRealmId === 1) {
-      minRealm = 3;
-      maxRealm = 8;
-    } else if (currRealmId === 1) {
-      minRealm = 1;
-      maxRealm = 4;
+    if (calcMode === 'remake') {
+      minRealm = currRealmId;
+      maxRealm = Math.min(realms.length, currRealmId + 5);
     } else {
       minRealm = Math.max(1, currRealmId - 2);
       maxRealm = Math.min(realms.length, currRealmId + 2);
@@ -733,11 +757,10 @@
         });
 
         if (realmItems.length > 0) {
-          // Sort offerings within each realm group from Low to High rarity / quality
           realmItems.sort((a, b) => {
             let rA = rarityRank[a.rarity] || 1;
             let rB = rarityRank[b.rarity] || 1;
-            if (rA !== rB) return rA - rB; // Low to High
+            if (rA !== rB) return rA - rB;
             let gA = a.baseGift ?? 0;
             let gB = b.baseGift ?? 0;
             if (gA !== gB) return gA - gB;
@@ -766,29 +789,52 @@
       }
     });
 
-    // 1. Calculate Key Items Raw Stats & Gifts
+    // 1. Core Pill Contribution
+    const pillGrade = document.getElementById("pillGrade").value;
+    let pillGiftBonus = (calcMode === 'remake') ? 0 : pillGradeGifts[pillGrade];
+    document.getElementById("pillSubtext").innerText = `+${pillGiftBonus.toFixed(2)}x Gift`;
+
+    // 2. Key Items Calculation & Subtext
     const key1Grade = document.getElementById("key1Grade").value;
     const key2Grade = document.getElementById("key2Grade").value;
 
     let k1Obj = getItemObj(currRealmObj.key1, currRealmObj.key1Rarity);
     let k2Obj = getItemObj(currRealmObj.key2, currRealmObj.key2Rarity);
 
-    let m_k1 = getRealmModifierMult(k1Obj.realmId ?? k1Obj.realmid ?? currRealmId, currRealmId);
-    let m_k2 = getRealmModifierMult(k2Obj.realmId ?? k2Obj.realmid ?? currRealmId, currRealmId);
+    let k1Gift, k1Stats, k2Gift, k2Stats;
 
-    let rawKeyStats = 0.5 * ((k1Obj.baseStats * gradeMultipliers[key1Grade].statMult) + 
-                            (k2Obj.baseStats * gradeMultipliers[key2Grade].statMult));
+    if (k1Obj.isQuest) {
+      k1Gift = k1Obj.baseGift;
+      k1Stats = k1Obj.baseStats;
+    } else {
+      let m_k1 = getRealmModifierMult(k1Obj.realmId ?? k1Obj.realmid ?? currRealmId, currRealmId);
+      k1Gift = k1Obj.baseGift * gradeMultipliers[key1Grade].giftMult * m_k1;
+      k1Stats = 0.5 * (k1Obj.baseStats * gradeMultipliers[key1Grade].statMult);
+    }
 
-    let keyGiftBonus = (k1Obj.baseGift * gradeMultipliers[key1Grade].giftMult * m_k1) + 
-                       (k2Obj.baseGift * gradeMultipliers[key2Grade].giftMult * m_k2);
+    if (k2Obj.isQuest) {
+      k2Gift = k2Obj.baseGift;
+      k2Stats = k2Obj.baseStats;
+    } else {
+      let m_k2 = getRealmModifierMult(k2Obj.realmId ?? k2Obj.realmid ?? currRealmId, currRealmId);
+      k2Gift = k2Obj.baseGift * gradeMultipliers[key2Grade].giftMult * m_k2;
+      k2Stats = 0.5 * (k2Obj.baseStats * gradeMultipliers[key2Grade].statMult);
+    }
 
-    // In Foundation Remake Mode, Core Pill and Key Items are forfeited (0 stats & 0 gift multiplier)
+    let rawKeyStats = k1Stats + k2Stats;
+    let keyGiftBonus = k1Gift + k2Gift;
+
     if (calcMode === 'remake') {
       rawKeyStats = 0;
       keyGiftBonus = 0;
+      document.getElementById("key1Subtext").innerText = `+0.00x Gift | +0.0 Stats`;
+      document.getElementById("key2Subtext").innerText = `+0.00x Gift | +0.0 Stats`;
+    } else {
+      document.getElementById("key1Subtext").innerText = `+${k1Gift.toFixed(2)}x Gift | +${k1Stats.toFixed(1)} Stats`;
+      document.getElementById("key2Subtext").innerText = `+${k2Gift.toFixed(2)}x Gift | +${k2Stats.toFixed(1)} Stats`;
     }
 
-    // 2. Calculate Offerings Raw Stats & Gifts
+    // 3. Offerings Calculation & Subtext
     const off1Name = document.getElementById("offering1").value;
     const off1Grade = document.getElementById("off1Grade").value;
     const off2Name = document.getElementById("offering2").value;
@@ -804,19 +850,28 @@
     let m2 = getRealmModifierMult(o2Obj.realmId ?? o2Obj.realmid ?? currRealmId, currRealmId);
     let m3 = getRealmModifierMult(o3Obj.realmId ?? o3Obj.realmid ?? currRealmId, currRealmId);
 
-    let rawOfferingStats = (o1Obj.baseStats * gradeMultipliers[off1Grade].statMult) +
-                           (o2Obj.baseStats * gradeMultipliers[off2Grade].statMult) +
-                           (o3Obj.baseStats * gradeMultipliers[off3Grade].statMult);
+    let o1Gift = (o1Obj.name === "None") ? 0 : o1Obj.baseGift * gradeMultipliers[off1Grade].giftMult * m1;
+    let o2Gift = (o2Obj.name === "None") ? 0 : o2Obj.baseGift * gradeMultipliers[off2Grade].giftMult * m2;
+    let o3Gift = (o3Obj.name === "None") ? 0 : o3Obj.baseGift * gradeMultipliers[off3Grade].giftMult * m3;
 
-    if (currRealmId === 1) rawOfferingStats *= 1.5;
+    let o1Stats = (o1Obj.name === "None") ? 0 : o1Obj.baseStats * gradeMultipliers[off1Grade].statMult * (currRealmId === 1 ? 1.5 : 1.0);
+    let o2Stats = (o2Obj.name === "None") ? 0 : o2Obj.baseStats * gradeMultipliers[off2Grade].statMult * (currRealmId === 1 ? 1.5 : 1.0);
+    let o3Stats = (o3Obj.name === "None") ? 0 : o3Obj.baseStats * gradeMultipliers[off3Grade].statMult * (currRealmId === 1 ? 1.5 : 1.0);
 
+    document.getElementById("off1Subtext").innerText = `+${o1Gift.toFixed(2)}x Gift | +${o1Stats.toFixed(1)} Stats`;
+    document.getElementById("off2Subtext").innerText = `+${o2Gift.toFixed(2)}x Gift | +${o2Stats.toFixed(1)} Stats`;
+    document.getElementById("off3Subtext").innerText = `+${o3Gift.toFixed(2)}x Gift | +${o3Stats.toFixed(1)} Stats`;
+
+    let rawOfferingStats = o1Stats + o2Stats + o3Stats;
+
+    // Combine Key + Offering into Diminishing Pool
     let combinedRawStats = rawKeyStats + rawOfferingStats;
     let effectiveItemStats = Math.min(6, combinedRawStats) + 0.5 * Math.max(0, Math.min(12, combinedRawStats - 6));
     effectiveItemStats = Math.min(12, effectiveItemStats);
 
     let roundedItemStats = Math.round(effectiveItemStats);
 
-    // 3. Tribulation Detection & Bonus (+0.25)
+    // 4. Tribulation Detection & Bonus (+0.25)
     let tribulationActive = false;
     const selectedOfferings = [o1Obj, o2Obj, o3Obj].filter(o => o.name !== "None");
     const rareOrHigherCount = selectedOfferings.filter(o => (rarityRank[o.rarity] || 1) >= 2).length;
@@ -831,14 +886,8 @@
 
     let tribulationBonus = tribulationActive ? 0.25 : 0.00;
 
-    // 4. Realm Gift Calculation
-    const pillGrade = document.getElementById("pillGrade").value;
-    let pillGiftBonus = (calcMode === 'remake') ? 0 : pillGradeGifts[pillGrade];
-
-    let offeringsGift = (o1Obj.baseGift * gradeMultipliers[off1Grade].giftMult * m1) +
-                        (o2Obj.baseGift * gradeMultipliers[off2Grade].giftMult * m2) +
-                        (o3Obj.baseGift * gradeMultipliers[off3Grade].giftMult * m3);
-
+    // 5. Total Realm Gift Calculation
+    let offeringsGift = o1Gift + o2Gift + o3Gift;
     let uncappedGiftMultiplier = 1.0 + pillGiftBonus + keyGiftBonus + offeringsGift + tribulationBonus;
 
     const qiSpotIdx = parseInt(document.getElementById("qiSpot").value);
@@ -861,6 +910,7 @@
     let efficiencyPct = (uncappedGiftMultiplier / maxPotentialGift) * 100;
     efficiencyPct = Math.min(100, efficiencyPct);
 
+    // Update UI Results
     document.getElementById("itemsStats").innerText = roundedItemStats;
     document.getElementById("daoBonus").innerText = `+${daoBonus}`;
     document.getElementById("totalStats").innerText = totalStats;
