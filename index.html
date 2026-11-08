@@ -250,8 +250,13 @@
       transition: all 0.2s ease;
     }
 
-    .mode-btn:hover {
+    .mode-btn:hover:not(:disabled) {
       border-color: var(--gold-color);
+    }
+
+    .mode-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
     }
 
     .mode-btn.active {
@@ -414,24 +419,32 @@
 
     <details>
       <summary>⚡ 5. Foundation Remake</summary>
-      <p>If you are unsatisfied with your foundation's realm gift, you can remake each realm's foundation <b>once</b> using a specialized pill.</p>
+      <p><b>Note:</b> The starting realm (Qi Refining) does not have a foundation tier and <b>cannot</b> be remade. You must reach Foundation Establishment before you can remake.</p>
       
-      <p><b>Remaking to/within Hongmeng:</b></p>
+      <p>If you are unsatisfied with your foundation's realm gift, you can remake each realm's foundation <b>once</b> using a specialized pill. There are 3 types of Remake Pills:</p>
+
       <ul>
-        <li>Requires a <b>Hongmeng Remaking Pill</b>.</li>
-        <li>Used to remake a Hongmeng-tier foundation, OR to upgrade any lower foundation (e.g., Dao, Earth) to Hongmeng. The better gift is kept.</li>
-        <li>Since Hongmeng realms (R11+) no longer use Key Items, a Remake in these realms <b>only forfeits the Core Pill's multiplier</b>. Your gift will rely entirely on your 3 Offerings + the Hongmeng Tribulation.</li>
+        <li><b>Foundation Remaking Pill:</b> Allows remaking a Common to Earth tier foundation, but is capped at resulting in a <b>Dao</b> tier foundation. <i>(Source: 5% drop from strong Region 1 bosses or crafted by Alchemists).</i></li>
+        <li><b>Dao Remaking Pill:</b> Allows remaking Heaven and Dao tier foundations, still capped at <b>Dao</b>. <i>(Source: 1% drop from bosses in the Ninth Chain area, Lv.71+).</i></li>
+        <li><b>Hongmeng Remaking Pill:</b> Allows you to retake the Hongmeng trial. Any tier foundation (including Dao) can use this pill to attempt an upgrade to <b>Hongmeng</b>. <i>(Source: Region 3 bosses).</i></li>
+      </ul>
+
+      <p><b>Remake Mechanics & Rules:</b></p>
+      <ul>
+        <li>You <b>forfeit</b> the Core Pill and Key Item multipliers. Your gift is calculated strictly from your 3 offerings.</li>
+        <li>Unlike standard breakthroughs, Remakes allow you to offer treasures from your current realm up to 5 realms above!</li>
+        <li>Since Hongmeng realms (R11+) no longer use Key Items, a Remake in these realms <b>only forfeits the Core Pill's multiplier</b>.</li>
       </ul>
 
       <p><i>To compute your exact output, switch to <b>Foundation Remake Mode</b> using the toggle button above.</i></p>
-      <p><b>⚠️ Warning:</b> Every major realm's foundation can only be remade <b>a single time</b>.</p>
+      <p><b>⚠️ Warning:</b> Every major realm's foundation can only be remade <b>a single time</b>. The better gift is kept when upgrading.</p>
     </details>
 
     <details>
       <summary>👥 6. Credits</summary>
       <p><b>Owner:</b> Beelzebub (<code>@Fernypaper</code>). Feel free to reach out with feedback or suggestions!</p>
       <p><b>Contributor:</b> Abe (<code>@TayaraAbe</code>) — <i>The great dev and item list provider</i></p>
-      <p>Sunless: Offering list maintainer</p>
+      <p><b>Contributor:</b> Sunless — <i>Offering list maintenance</i></p>
       <p>Made out of love for the game so it might not be perfect, but it's here to help!</p>
     </details>
   </div>
@@ -776,6 +789,11 @@
   // ==========================================
 
   function setCalculatorMode(mode) {
+    // Block Remake Mode if Qi Refining is selected
+    if (mode === 'remake' && parseInt(document.getElementById("currentRealm").value) === 1) {
+      return;
+    }
+
     calcMode = mode;
     document.getElementById("btnStandardMode").classList.toggle("active", mode === 'standard');
     document.getElementById("btnRemakeMode").classList.toggle("active", mode === 'remake');
@@ -869,6 +887,29 @@
     document.getElementById("corePill").innerText = currRealmObj.pill;
     document.getElementById("keyItem1").innerText = currRealmObj.key1;
     document.getElementById("keyItem2").innerText = currRealmObj.key2;
+
+    // Disable Remake Mode for Qi Refining
+    const btnRemake = document.getElementById("btnRemakeMode");
+    if (currRealmId === 1) {
+      btnRemake.disabled = true;
+      btnRemake.style.opacity = "0.5";
+      btnRemake.style.cursor = "not-allowed";
+      btnRemake.title = "Qi Refining has no foundation to remake.";
+      
+      // If they were in Remake mode, force them back to Standard
+      if (calcMode === 'remake') {
+        calcMode = 'standard';
+        document.getElementById("btnStandardMode").classList.add("active");
+        document.getElementById("btnRemakeMode").classList.remove("active");
+        document.getElementById("pillGrade").disabled = false;
+        document.getElementById("remakeNotice").style.display = "none";
+      }
+    } else {
+      btnRemake.disabled = false;
+      btnRemake.style.opacity = "1";
+      btnRemake.style.cursor = "pointer";
+      btnRemake.title = "";
+    }
 
     // Handle Hongmeng UI Visibility
     const hongmengContainer = document.getElementById("hongmengContainer");
