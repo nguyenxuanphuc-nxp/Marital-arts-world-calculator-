@@ -730,7 +730,7 @@
   },
   {
     "name":"Heart of the Burning Vein",
-    "realmId":8,
+    "realmId":7,
     "rarity":"Legendary",
     "baseGift":0.32,
     "baseStats":2,
@@ -748,7 +748,7 @@
   },
   {
     "name":"The Ninth Banner's Seal",
-    "realmId":8,
+    "realmId":7,
     "rarity":"Legendary",
     "baseGift":0.32,
     "baseStats":2,
@@ -790,5 +790,302 @@
     "baseStats":4,
     "isKey":true,
     "isOffering":false
+  },
+  {
+    "name":"A Shard of the Sealer's Ward-Stone",
+    "realmId":9,
+    "rarity":"Mythic",
+    "baseGift":0.46,
+    "baseStats":4,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"A Lock of the Teal Mane",
+    "realmId":10,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"A Scale of White Jade",
+    "realmId":10,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Grey Fletching",
+    "realmId":10,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Pearl of the Last Clear Spring",
+    "realmId":10,
+    "rarity":"Legendary",
+    "baseGift":0.32,
+    "baseStats":2,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"The Last Watch - Arrow",
+    "realmId":10,
+    "rarity":"Mythic",
+    "baseGift":0.46,
+    "baseStats":4,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"The White-Jade Dragon's Horn-Tip",
+    "realmId":10,
+    "rarity":"Mythic",
+    "baseGift":0.46,
+    "baseStats":4,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"A Coal of Endless Hunger",
+    "realmId":11,
+    "rarity":"Legendary",
+    "baseGift":0.32,
+    "baseStats":2,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"A Pearl of Withered Qi",
+    "realmId":11,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"A Stormglass Heart",
+    "realmId":11,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"The Salt-Wall Seal",
+    "realmId":11,
+    "rarity":"Legendary",
+    "baseGift":0.32,
+    "baseStats":2,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Wuyan's Unlit Halo-Ring",
+    "realmId":11,
+    "rarity":"Mythic",
+    "baseGift":0.46,
+    "baseStats":4,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Hundred-Strike Glass",
+    "realmId":11,
+    "rarity":"Mythic",
+    "baseGift":0.46,
+    "baseStats":4,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"A Drowned Warden's Chain-Link",
+    "realmId":12,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Cistern Mirror-Jade",
+    "realmId":12,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Old Thunder's Ink Pearl",
+    "realmId":12,
+    "rarity":"Legendary",
+    "baseGift":0.32,
+    "baseStats":2,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"The Drowned Warden's Key",
+    "realmId":12,
+    "rarity":"Mythic",
+    "baseGift":0.46,
+    "baseStats":4,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"The Lamp Mother's First Lantern",
+    "realmId":12,
+    "rarity":"Mythic",
+    "baseGift":0.46,
+    "baseStats":4,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"The Lamp Mother's Wick",
+    "realmId":12,
+    "rarity":"Mythic",
+    "baseGift":0.46,
+    "baseStats":4,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"A Stair-Bell's Bronze Tongue",
+    "realmId":13,
+    "rarity":"Legendary",
+    "baseGift":0.32,
+    "baseStats":2,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Rootward Amber",
+    "realmId":13,
+    "rarity":"Legendary",
+    "baseGift":0.32,
+    "baseStats":2,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"The Bell Warden's Unstruck Bell",
+    "realmId":13,
+    "rarity":"Mythic",
+    "baseGift":0.46,
+    "baseStats":4,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"The Moss-Heart of the Maw",
+    "realmId":13,
+    "rarity":"Legendary",
+    "baseGift":0.32,
+    "baseStats":2,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"The Ruin Maw's Keystone",
+    "realmId":13,
+    "rarity":"Mythic",
+    "baseGift":0.46,
+    "baseStats":4,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"A Cloud-Eater's Thunder Scale",
+    "realmId":14,
+    "rarity":"Legendary",
+    "baseGift":0.32,
+    "baseStats":2,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"The Cloud-Eater's Storm Pearl",
+    "realmId":14,
+    "rarity":"Mythic",
+    "baseGift":0.46,
+    "baseStats":4,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"The Unburied Emperor's Dragon Tally",
+    "realmId":14,
+    "rarity":"Mythic",
+    "baseGift":0.46,
+    "baseStats":4,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"The Unburied Emperor's Jade Seal",
+    "realmId":14,
+    "rarity":"Legendary",
+    "baseGift":0.32,
+    "baseStats":2,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"A Tide-Heart of the Torrent Sea",
+    "realmId":15,
+    "rarity":"Mythic",
+    "baseGift":0.46,
+    "baseStats":4,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"The Herald's Conch of Guixu",
+    "realmId":15,
+    "rarity":"Mythic",
+    "baseGift":0.46,
+    "baseStats":4,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"The Pale Ferryman's Coin",
+    "realmId":15,
+    "rarity":"Legendary",
+    "baseGift":0.32,
+    "baseStats":2,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"A Plate of the Unyielding Armour",
+    "realmId":16,
+    "rarity":"Mythic",
+    "baseGift":0.46,
+    "baseStats":4,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Pearl of the Sunken Sovereign",
+    "realmId":16,
+    "rarity":"Mythic",
+    "baseGift":0.46,
+    "baseStats":4,
+    "isKey":false,
+    "isOffering":true
   }
 ]

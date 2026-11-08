@@ -125,6 +125,7 @@
       border-radius: 8px;
       border: 1px solid var(--card-border);
       transition: opacity 0.2s ease;
+      position: relative;
     }
 
     .card h3 {
@@ -153,6 +154,11 @@
       border-radius: 6px;
       font-size: 0.88rem;
       outline: none;
+    }
+
+    select:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
     }
 
     optgroup {
@@ -265,6 +271,51 @@
       display: none;
       text-align: center;
     }
+
+    /* Hongmeng Toggle Styling */
+    .hongmeng-toggle-container {
+      margin-top: 15px;
+      padding: 10px;
+      background: rgba(251, 191, 36, 0.1);
+      border: 1px dashed var(--gold-color);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .hongmeng-toggle-container input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+      accent-color: var(--gold-color);
+    }
+
+    .hongmeng-toggle-container label {
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--gold-color);
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .key-items-disabled-msg {
+      display: none;
+      color: var(--muted-text);
+      font-style: italic;
+      font-size: 0.85rem;
+      text-align: center;
+      padding: 20px 0;
+    }
+    
+    .stat-group-title {
+        grid-column: 1 / -1;
+        color: var(--gold-color);
+        border-bottom: 1px solid var(--card-border);
+        padding-bottom: 5px;
+        margin-top: 10px;
+        font-size: 0.9rem;
+    }
   </style>
 </head>
 <body>
@@ -282,31 +333,8 @@
       <p><b>Required Materials:</b></p>
       <ul>
         <li><b>Core Pill:</b> Required. Bought from Alchemist NPCs (up to High-Grade) or refined/dropped by bosses (up to Emperor-Grade).</li>
-        <li><b>Key Items:</b> Required (1-2 per realm). Hover over the item in the cultivation tab to see dropping bosses (33% drop rate). Gives 50% stat points & 100% gift multiplier.</li>
+        <li><b>Key Items:</b> Required (1-2 per realm) until Immortal. Gives 50% stat points & 100% gift multiplier.</li>
         <li><b>Offerings:</b> Optional (up to 3 treasures). Sacrificed to boost stat points and gift multiplier.</li>
-      </ul>
-
-      <p><b>Stat Points & Realm Gift Scaling:</b></p>
-      <ul>
-        <li><b>Base Gains:</b> Every breakthrough grants <b>+2 Stat Points</b> and <b>a realm gift of +7 health, +5 qi and +1.2% damage at the base realm gift value of x1</b>.</li>
-        <li><b>Treasure Boosts:</b> Higher rarity, higher grade, or higher-realm items grant more stats and gift value (up to +50% for higher-realm items).</li>
-        <li><b>Max Stat Cap:</b> Capped at <b>19 Stat Points</b> max per breakthrough (2 Base + 12 max from items + 5 from Dao Tier).</li>
-      </ul>
-
-      <p><b>Example Breakdown (Qi Refining → Foundation Establishment):</b></p>
-      <p>Setup: Low-Grade Core Pill, High-Grade Key Item, and 3x Low-Grade Epic Treasures (+2 Realms above).</p>
-      <ul>
-        <li><b>Core Pill (Low-Grade):</b> +0.00x</li>
-        <li><b>Key Item (High-Grade Scarback Tusk):</b> +0.224x <i>(0.14 base × 1.60 grade factor)</i></li>
-        <li><b>Offerings (3x Low-Grade Epics +2 Realms):</b> +0.990x <i>(0.22 base × 1.0 grade factor × 1.50 +2 Realm modifier × 3 items)</i></li>
-        <li><b>Tribulation Bonus:</b> +0.250x <i>(Active for 2+ Rare/Epic offerings in R1)</i></li>
-      </ul>
-      <p><b>Total Realm Gift Multiplier:</b> 1.00 (Base) + 0.00 + 0.224 + 0.990 + 0.250 = <b>2.464x</b></p>
-      <p><b>Converted Breakthrough Stat Gain:</b></p>
-      <ul>
-        <li><b>Health Gain:</b> +17.25 HP (2.464 × 7)</li>
-        <li><b>Qi Gain:</b> +12.32 Qi (2.464 × 5)</li>
-        <li><b>Damage Gain:</b> +2.96% Damage (2.464 × 1.2%)</li>
       </ul>
     </details>
 
@@ -323,6 +351,7 @@
           <tr><td>Purple Thunder Pool</td><td><b>2.10x</b> (Heaven)</td></tr>
           <tr><td>Blackgold Fog Pool</td><td><b>2.40x</b> (Heaven)</td></tr>
           <tr><td>The Void</td><td><b>No cap</b> (Dao)</td></tr>
+          <tr><td>Guixu Gold / Primordial Chaos</td><td><b>No cap</b> (Hongmeng)</td></tr>
         </tbody>
       </table>
       <p>Excessive realm gift values above the cap are lost, so choose a good qi spot.</p>
@@ -344,20 +373,14 @@
 
       <p><b>Stat Points Grade Factors:</b></p>
       <ul>
-        <li><b>Low:</b> 1.0x</li>
-        <li><b>Mid:</b> 1.5x</li>
-        <li><b>High:</b> 2.0x</li>
-        <li><b>Heaven:</b> 2.5x</li>
-        <li><b>Emperor:</b> 3.0x</li>
+        <li><b>Low:</b> 1.0x | <b>Mid:</b> 1.5x | <b>High:</b> 2.0x</li>
+        <li><b>Heaven:</b> 2.5x | <b>Emperor:</b> 3.0x</li>
       </ul>
 
       <p><b>Realm Gift Grade Factors:</b></p>
       <ul>
-        <li><b>Low:</b> 1.0x</li>
-        <li><b>Mid:</b> 1.25x</li>
-        <li><b>High:</b> 1.6x</li>
-        <li><b>Heaven:</b> 2.2x</li>
-        <li><b>Emperor:</b> 3.0x</li>
+        <li><b>Low:</b> 1.0x | <b>Mid:</b> 1.25x | <b>High:</b> 1.6x</li>
+        <li><b>Heaven:</b> 2.2x | <b>Emperor:</b> 3.0x</li>
       </ul>
 
       <p><b>Breakthrough Range Restrictions:</b></p>
@@ -371,41 +394,27 @@
         <li><b>0 to 6 Stats:</b> Every stat point gained gives full <b>+1 Stat Point</b>.</li>
         <li><b>Above 6 Stats:</b> Stat points suffer a <b>50% penalty</b> (every 2 stat points give only <b>+1 Stat Point</b>).</li>
         <li><b>Hard Cap:</b> You can gain a maximum of <b>12 Stat Points</b> from items.</li>
-        <li><b>Maximum Ceiling:</b> Reaching the cap grants <b>19 Total Stat Points</b> (2 Base + 12 Items + 5 Dao Tier Bonus).</li>
+        <li><b>Maximum Ceiling:</b> Dao reaches <b>19 Total Stat Points</b> (2 Base + 12 Items + 5 Dao). Hongmeng reaches <b>24 Total</b> (2 Base + 12 Items + 10 Hongmeng).</li>
       </ul>
     </details>
 
     <details>
       <summary>💡 4. How to Use & Efficiency</summary>
       <ul>
-        <li>1. Select your <b>Current Realm</b> (e.g., Qi Refining is R1, Foundation Establishment is R2, Qi Condensation is R3, etc.).</li>
+        <li>1. Select your <b>Current Realm</b>.</li>
         <li>2. Pick your <b>Qi Spot</b> location and <b>Pill Grade</b>.</li>
-        <li>3. Set key items grades (<i>Low, Mid, High, Heaven, Emperor</i>).</li>
-        <li>4. Choose up to 3 <b>Offerings</b> and their grades. You can type the first few letters of an offering to quickly select it.</li>
+        <li>3. Set key items grades.</li>
+        <li>4. Choose up to 3 <b>Offerings</b> and their grades.</li>
         <li>5. Read real-time stats, gift multiplier, and foundation tier!</li>
       </ul>
-      <p><b>Efficiency Percentage:</b> Measures how close your setup is to reaching the absolute maximum Realm Gift potential for your current breakthrough level (Current Realm Gift ÷ Max Realm Gift Potential).</p>
+      <p><b>Efficiency Percentage:</b> Measures how close your setup is to the absolute maximum Realm Gift potential for your current realm (Current Realm Gift ÷ Max Realm Gift Potential).</p>
     </details>
 
     <details>
       <summary>⚡ 5. Foundation Remake</summary>
-      <p><b>How to Remake a Foundation:</b></p>
-      <p>If you are unsatisfied with your foundation's realm gift, you can remake each realm's foundation <b>once</b> using a specialized pill:</p>
-      <ul>
-        <li><b>Earth Tier & Below:</b> Requires a <b>Foundation Remake Pill</b> (rare boss drop or crafted by high-level Alchemists).</li>
-        <li><b>Heaven & Dao Tiers:</b> Requires a <b>Dao Remake Pill</b> (1% drop rate from level 71+ bosses in Region 2, Part 2).</li>
-      </ul>
-
-      <p><b>Remake Mechanics:</b></p>
-      <p>Remaking allows you to replace a weak or botched earlier breakthrough with a significantly stronger foundation. During a remake:</p>
-      <ul>
-        <li>You <b>forfeit</b> all stats and realm gift multipliers originally gained from the core pill and key items.</li>
-        <li>Your new realm gift is calculated <b>strictly from 3 offerings</b>.</li>
-        <li>Unlike standard breakthroughs, Foundation Remakes allow you to offer treasures from <b>your current realm up to 5 realms above</b>!</li>
-      </ul>
+      <p>If you are unsatisfied with your foundation's realm gift, you can remake each realm's foundation <b>once</b> using a specialized pill.</p>
       <p><i>To compute your exact output, switch to <b>Foundation Remake Mode</b> using the toggle button above.</i></p>
-
-      <p><b>⚠️ Warning:</b> As of the current update, every major realm's foundation can only be remade <b>a single time</b>. Choose your offerings carefully before confirming!</p>
+      <p><b>⚠️ Warning:</b> Every major realm's foundation can only be remade <b>a single time</b>.</p>
     </details>
 
     <details>
@@ -449,25 +458,37 @@
         <label for="pillGrade">Pill Grade</label>
         <select id="pillGrade" onchange="updateCalculator()"></select>
         <div id="pillSubtext" class="item-subtext">+0.00x Gift</div>
+
+        <!-- Hongmeng Checkbox -->
+        <div id="hongmengContainer" class="hongmeng-toggle-container" style="display: none;" title="Requires Earth Immortal realm or higher.">
+          <input type="checkbox" id="hongmengCheckbox" onchange="updateCalculator()">
+          <label for="hongmengCheckbox">Attempt Hongmeng Tribulation</label>
+        </div>
       </div>
 
       <!-- 2. Key Items -->
       <div class="card" id="keyItemsCard">
         <h3>2. Key Items</h3>
         
-        <label>Key Item 1</label>
-        <div id="keyItem1" class="auto-field">-</div>
+        <div id="keyItemsContent">
+          <label>Key Item 1</label>
+          <div id="keyItem1" class="auto-field">-</div>
 
-        <label for="key1Grade">Key Item 1 Grade</label>
-        <select id="key1Grade" onchange="updateCalculator()"></select>
-        <div id="key1Subtext" class="item-subtext">+0.00x Gift | +0.0 Stats</div>
+          <label for="key1Grade">Key Item 1 Grade</label>
+          <select id="key1Grade" onchange="updateCalculator()"></select>
+          <div id="key1Subtext" class="item-subtext">+0.00x Gift | +0.0 Stats</div>
 
-        <label>Key Item 2</label>
-        <div id="keyItem2" class="auto-field">-</div>
+          <label>Key Item 2</label>
+          <div id="keyItem2" class="auto-field">-</div>
 
-        <label for="key2Grade">Key Item 2 Grade</label>
-        <select id="key2Grade" onchange="updateCalculator()"></select>
-        <div id="key2Subtext" class="item-subtext">+0.00x Gift | +0.0 Stats</div>
+          <label for="key2Grade">Key Item 2 Grade</label>
+          <select id="key2Grade" onchange="updateCalculator()"></select>
+          <div id="key2Subtext" class="item-subtext">+0.00x Gift | +0.0 Stats</div>
+        </div>
+        
+        <div id="keyItemsDisabledMsg" class="key-items-disabled-msg">
+          No Key Items required for this realm.
+        </div>
       </div>
 
       <!-- 3. Offerings / Treasures -->
@@ -505,7 +526,7 @@
         <p id="itemsStats">0</p>
       </div>
       <div class="stat-box">
-        <h4>Dao Bonus</h4>
+        <h4>Tier Bonus</h4>
         <p id="daoBonus">+0</p>
       </div>
       <div class="stat-box">
@@ -523,11 +544,26 @@
       </div>
       <div class="stat-box">
         <h4>Efficiency</h4>
-        <p id="efficiency">100.00%</p>
+        <p id="efficiency">0.00%</p>
       </div>
       <div class="stat-box">
         <h4>Foundation Tier</h4>
         <p id="foundationTier" class="tier-tag">Common</p>
+      </div>
+
+      <div class="stat-group-title">Realm Breakthrough Gains</div>
+
+      <div class="stat-box">
+        <h4>Health Gain</h4>
+        <p id="healthGain" style="color:#4ade80;">+0.0 HP</p>
+      </div>
+      <div class="stat-box">
+        <h4>Qi Gain</h4>
+        <p id="qiGain" style="color:#38bdf8;">+0.0 Qi</p>
+      </div>
+      <div class="stat-box">
+        <h4>Damage Gain</h4>
+        <p id="damageGain" style="color:#f43f5e;">+0.00%</p>
       </div>
     </div>
   </div>
@@ -547,13 +583,37 @@
     { id: 5, name: "Origin Spirit", pill: "Nascent Soul Fruit", key1: "Nine-Lantern Foxfire Bead", key2: "Khan Temur's Golden Seal", key1Rarity: "Epic", key2Rarity: "Epic" },
     { id: 6, name: "Nascent Soul", pill: "Soul Formation Pill", key1: "Old Thunderhoof's Storm Horn", key2: "Roc Matriarch's Plume", key1Rarity: "Epic", key2Rarity: "Epic" },
     { id: 7, name: "Soul Formation", pill: "Dao-seeking Tea", key1: "Kulong's Withered Spine", key2: "Heart-Demon Core", key1Rarity: "Mythic", key2Rarity: "Mythic" },
-    { id: 8, name: "Dao-Seeking", pill: "Feather Ascension Pill", key1: "The Ninth Banner's Seal", key2: "The Ninth Banner's Seal", key1Rarity: "Legendary", key2Rarity: "Legendary" },
-    { id: 9, name: "Ascension", pill: "Placeholder pill", key1: "The Ninth Gate Mandate", key2: "None", key1Rarity: "Mythic", key2Rarity: "Uncommon" },
-    { id: 10, name: "Immortal", pill: "Max Realm", key1: "None", key2: "None", key1Rarity: "Uncommon", key2Rarity: "Uncommon" }
+    { id: 8, name: "Dao-Seeking", pill: "Feather Ascension Pill", key1: "Heart of the Burning Vein", key2: "The Ninth Banner's Seal", key1Rarity: "Legendary", key2Rarity: "Legendary" },
+    { id: 9, name: "Ascension", pill: "Immortal Ascension Pill", key1: "The Ninth Gate Mandate", key2: "None", key1Rarity: "Mythic", key2Rarity: "Uncommon" },
+    { id: 10, name: "Immortal", pill: "Immortal Ascension Pill", key1: "None", key2: "None", key1Rarity: "Uncommon", key2Rarity: "Uncommon" },
+    // New Realms
+    { id: 11, name: "Earth Immortal", pill: "Earth Immortal Pill", key1: "None", key2: "None", key1Rarity: "Uncommon", key2Rarity: "Uncommon" },
+    { id: 12, name: "Heaven Immortal", pill: "Heaven Immortal Pill", key1: "None", key2: "None", key1Rarity: "Uncommon", key2Rarity: "Uncommon" },
+    { id: 13, name: "Mystic Immortal", pill: "Mystic Immortal Pill", key1: "None", key2: "None", key1Rarity: "Uncommon", key2Rarity: "Uncommon" },
+    { id: 14, name: "Golden Immortal", pill: "Golden Immortal Pill", key1: "None", key2: "None", key1Rarity: "Uncommon", key2Rarity: "Uncommon" },
+    { id: 15, name: "Taiyi Golden Immortal", pill: "Taiyi Golden Pill", key1: "None", key2: "None", key1Rarity: "Uncommon", key2Rarity: "Uncommon" },
+    { id: 16, name: "Daluo Golden Immortal", pill: "Daluo Golden Pill", key1: "None", key2: "None", key1Rarity: "Uncommon", key2Rarity: "Uncommon" },
+    { id: 17, name: "Hunyuan", pill: "Hunyuan Primordial Pill", key1: "None", key2: "None", key1Rarity: "Uncommon", key2Rarity: "Uncommon" }
   ];
 
   const maxRealmsGifts = {
-    1: 8.10, 2: 8.10, 3: 8.613, 4: 7.734, 5: 9.00, 6: 7.965, 7: 10.44, 8: 8.565, 9: 6.99
+    1: 8.10, 
+    2: 8.10, 
+    3: 8.613, 
+    4: 8.769, 
+    5: 9.00, 
+    6: 9.00, 
+    7: 10.44, 
+    8: 8.38, 
+    9: 8.38,
+    10: 7.68,
+    11: 10.38,
+    12: 10.38,
+    13: 10.38,
+    14: 10.38,
+    15: 9.345,
+    16: 8.31,
+    17: 6.861
   };
 
   const qiSpots = [
@@ -561,7 +621,8 @@
     { name: "Meditation Mat / Common Wild Pool (Earth Cap)", cap: 1.80 },
     { name: "Purple Thunder Pool (Heaven Cap)", cap: 2.10 },
     { name: "Blackgold Fog Pool (Heaven Cap)", cap: 2.40 },
-    { name: "The Void (No Cap - Dao Realm)", cap: 99.00 }
+    { name: "The Void (No Cap - Dao Realm)", cap: 99.00 },
+    { name: "Guixu Gold / Primordial Chaos (Hongmeng)", cap: 99.00 }
   ];
 
   const gradeMultipliers = {
@@ -589,6 +650,10 @@
   };
 
   let items = [];
+  let calcMode = 'standard'; // 'standard' or 'remake'
+  let lastRenderedRealmId = null;
+  let lastRenderedMode = null;
+  let previousQiSpotIndex = 0;
 
   // ==========================================
   // INITIALIZATION
@@ -609,16 +674,17 @@
       items.unshift({ name: "None", realmId: 1, rarity: "Uncommon", baseGift: 0.00, baseStats: 0, isKey: false, isOffering: false });
     }
 
-    // Add/Update Special Quest Items
-    const ninthBannerIndex = items.findIndex(i => i.name === "The Ninth Banner's Seal");
-    const ninthBannerObj = { name: "The Ninth Banner's Seal", realmId: 8, rarity: "Legendary", baseGift: 0.32, baseStats: 1, isKey: true, isOffering: false, isQuest: true };
-    if (ninthBannerIndex >= 0) items[ninthBannerIndex] = ninthBannerObj;
-    else items.push(ninthBannerObj);
+    // Add/Update Special Quest Items with Fixed Multipliers
+    const updateQuestItem = (name, realmId, rarity, gift, stats) => {
+      const idx = items.findIndex(i => i.name === name);
+      const obj = { name, realmId, rarity, baseGift: gift, baseStats: stats, isKey: true, isOffering: false, isQuest: true, fixedGiftMult: gift, fixedStats: stats };
+      if (idx >= 0) items[idx] = obj;
+      else items.push(obj);
+    };
 
-    const ninthGateIndex = items.findIndex(i => i.name === "The Ninth Gate Mandate");
-    const ninthGateObj = { name: "The Ninth Gate Mandate", realmId: 9, rarity: "Mythic", baseGift: 0.46, baseStats: 2, isKey: true, isOffering: false, isQuest: true };
-    if (ninthGateIndex >= 0) items[ninthGateIndex] = ninthGateObj;
-    else items.push(ninthGateObj);
+    updateQuestItem("Heart of the Burning Vein", 8, "Legendary", 0.35, 0);
+    updateQuestItem("The Ninth Banner's Seal", 8, "Legendary", 0.35, 0);
+    updateQuestItem("The Ninth Gate Mandate", 9, "Mythic", 0.70, 1);
 
     initDropdowns();
   }
@@ -664,7 +730,8 @@
     return { name: itemName, baseGift: rData.baseGift, baseStats: rData.baseStats, realmId: 1, rarity: fallbackRarity };
   }
 
-  function getFoundationTier(multiplier) {
+  function getFoundationTier(multiplier, isHongmeng) {
+    if (isHongmeng) return "Hongmeng";
     if (multiplier < 1.15) return "Common";
     if (multiplier <= 1.44) return "Human";
     if (multiplier <= 1.84) return "Earth";
@@ -686,25 +753,18 @@
   // CALCULATOR LOGIC
   // ==========================================
 
-  let calcMode = 'standard'; // 'standard' or 'remake'
-
   function setCalculatorMode(mode) {
     calcMode = mode;
     document.getElementById("btnStandardMode").classList.toggle("active", mode === 'standard');
     document.getElementById("btnRemakeMode").classList.toggle("active", mode === 'remake');
     
-    const keyCard = document.getElementById("keyItemsCard");
     const pillGradeSelect = document.getElementById("pillGrade");
     const modeNotice = document.getElementById("remakeNotice");
 
     if (mode === 'remake') {
-      if (keyCard) keyCard.style.opacity = "0.45";
-      if (keyCard) keyCard.style.pointerEvents = "none";
       if (pillGradeSelect) pillGradeSelect.disabled = true;
       if (modeNotice) modeNotice.style.display = "block";
     } else {
-      if (keyCard) keyCard.style.opacity = "1.0";
-      if (keyCard) keyCard.style.pointerEvents = "auto";
       if (pillGradeSelect) pillGradeSelect.disabled = false;
       if (modeNotice) modeNotice.style.display = "none";
     }
@@ -712,19 +772,7 @@
     updateCalculator();
   }
 
-  function updateCalculator() {
-    const currRealmId = parseInt(document.getElementById("currentRealm").value);
-    const currRealmObj = realms.find(r => r.id === currRealmId);
-    const nextRealmObj = realms.find(r => r.id === currRealmId + 1) || { name: "Max Realm", pill: "None", key1: "None", key2: "None" };
-
-    document.getElementById("nextRealm").innerText = nextRealmObj.name;
-    document.getElementById("corePill").innerText = currRealmObj.pill;
-    document.getElementById("keyItem1").innerText = currRealmObj.key1;
-    document.getElementById("keyItem2").innerText = currRealmObj.key2;
-
-    // Filter Offerings:
-    // In Remake Mode: Current Realm up to 5 realms above (currRealmId to currRealmId + 5)
-    // In Standard Mode: ±2 realms relative to current realm for all realms
+  function rebuildOfferingDropdowns(currRealmId) {
     let minRealm, maxRealm;
     if (calcMode === 'remake') {
       minRealm = currRealmId;
@@ -788,53 +836,123 @@
         select.value = currentSelection;
       }
     });
+  }
+
+  function updateCalculator() {
+    const currRealmId = parseInt(document.getElementById("currentRealm").value);
+    const currRealmObj = realms.find(r => r.id === currRealmId);
+    const nextRealmObj = realms.find(r => r.id === currRealmId + 1) || { name: "Max Realm", pill: "None", key1: "None", key2: "None" };
+
+    document.getElementById("nextRealm").innerText = nextRealmObj.name;
+    document.getElementById("corePill").innerText = currRealmObj.pill;
+    document.getElementById("keyItem1").innerText = currRealmObj.key1;
+    document.getElementById("keyItem2").innerText = currRealmObj.key2;
+
+    // Handle Hongmeng UI Visibility
+    const hongmengContainer = document.getElementById("hongmengContainer");
+    const hongmengCheckbox = document.getElementById("hongmengCheckbox");
+    const qiSpotSelect = document.getElementById("qiSpot");
+    const isHongmengAvailable = currRealmId >= 11;
+
+    if (isHongmengAvailable) {
+      hongmengContainer.style.display = "flex";
+    } else {
+      hongmengContainer.style.display = "none";
+      hongmengCheckbox.checked = false;
+    }
+    const isHongmengActive = hongmengCheckbox.checked;
+
+    // Handle Qi Spot auto-toggle for Hongmeng
+    if (isHongmengActive) {
+      if (qiSpotSelect.value !== "5") {
+        previousQiSpotIndex = qiSpotSelect.value; // Store previous
+        qiSpotSelect.value = "5"; // Guixu Gold
+      }
+      qiSpotSelect.disabled = true;
+    } else {
+      if (qiSpotSelect.disabled) {
+        qiSpotSelect.disabled = false;
+        qiSpotSelect.value = previousQiSpotIndex; // Restore
+      }
+    }
+
+    // Handle Key Items Card visibility
+    const keyItemsContent = document.getElementById("keyItemsContent");
+    const keyItemsDisabledMsg = document.getElementById("keyItemsDisabledMsg");
+    if (currRealmId >= 10) {
+      keyItemsContent.style.display = "none";
+      keyItemsDisabledMsg.style.display = "block";
+    } else {
+      keyItemsContent.style.display = "block";
+      keyItemsDisabledMsg.style.display = "none";
+    }
+
+    // Rebuild Offerings only if realm, mode, or hongmeng changed
+    if (currRealmId !== lastRenderedRealmId || calcMode !== lastRenderedMode || isHongmengActive !== lastRenderedHongmeng) {
+      rebuildOfferingDropdowns(currRealmId);
+      lastRenderedRealmId = currRealmId;
+      lastRenderedMode = calcMode;
+      lastRenderedHongmeng = isHongmengActive;
+    }
 
     // 1. Core Pill Contribution
     const pillGrade = document.getElementById("pillGrade").value;
     let pillGiftBonus = (calcMode === 'remake') ? 0 : pillGradeGifts[pillGrade];
     document.getElementById("pillSubtext").innerText = `+${pillGiftBonus.toFixed(2)}x Gift`;
 
-    // 2. Key Items Calculation & Subtext
+    // 2. Key Items Calculation
     const key1Grade = document.getElementById("key1Grade").value;
     const key2Grade = document.getElementById("key2Grade").value;
 
     let k1Obj = getItemObj(currRealmObj.key1, currRealmObj.key1Rarity);
     let k2Obj = getItemObj(currRealmObj.key2, currRealmObj.key2Rarity);
 
-    let k1Gift, k1Stats, k2Gift, k2Stats;
+    let k1Gift = 0, k1Stats = 0, k2Gift = 0, k2Stats = 0;
 
-    if (k1Obj.isQuest) {
-      k1Gift = k1Obj.baseGift;
-      k1Stats = k1Obj.baseStats;
-    } else {
-      let m_k1 = getRealmModifierMult(k1Obj.realmId ?? k1Obj.realmid ?? currRealmId, currRealmId);
-      k1Gift = k1Obj.baseGift * gradeMultipliers[key1Grade].giftMult * m_k1;
-      k1Stats = 0.5 * (k1Obj.baseStats * gradeMultipliers[key1Grade].statMult);
-    }
+    if (currRealmId < 10) {
+      if (k1Obj.name !== "None") {
+        if (k1Obj.isQuest || k1Obj.fixedGiftMult != null) {
+          k1Gift = k1Obj.fixedGiftMult ?? k1Obj.baseGift;
+          k1Stats = k1Obj.fixedStats ?? k1Obj.baseStats;
+          document.getElementById("key1Grade").disabled = true;
+        } else {
+          let m_k1 = getRealmModifierMult(k1Obj.realmId ?? k1Obj.realmid ?? currRealmId, currRealmId);
+          k1Gift = k1Obj.baseGift * gradeMultipliers[key1Grade].giftMult * m_k1;
+          k1Stats = 0.5 * (k1Obj.baseStats * gradeMultipliers[key1Grade].statMult);
+          document.getElementById("key1Grade").disabled = false;
+        }
+      }
 
-    if (k2Obj.isQuest) {
-      k2Gift = k2Obj.baseGift;
-      k2Stats = k2Obj.baseStats;
-    } else {
-      let m_k2 = getRealmModifierMult(k2Obj.realmId ?? k2Obj.realmid ?? currRealmId, currRealmId);
-      k2Gift = k2Obj.baseGift * gradeMultipliers[key2Grade].giftMult * m_k2;
-      k2Stats = 0.5 * (k2Obj.baseStats * gradeMultipliers[key2Grade].statMult);
+      if (k2Obj.name !== "None") {
+        if (k2Obj.isQuest || k2Obj.fixedGiftMult != null) {
+          k2Gift = k2Obj.fixedGiftMult ?? k2Obj.baseGift;
+          k2Stats = k2Obj.fixedStats ?? k2Obj.baseStats;
+          document.getElementById("key2Grade").disabled = true;
+        } else {
+          let m_k2 = getRealmModifierMult(k2Obj.realmId ?? k2Obj.realmid ?? currRealmId, currRealmId);
+          k2Gift = k2Obj.baseGift * gradeMultipliers[key2Grade].giftMult * m_k2;
+          k2Stats = 0.5 * (k2Obj.baseStats * gradeMultipliers[key2Grade].statMult);
+          document.getElementById("key2Grade").disabled = false;
+        }
+      }
     }
 
     let rawKeyStats = k1Stats + k2Stats;
     let keyGiftBonus = k1Gift + k2Gift;
 
-    if (calcMode === 'remake') {
+    if (calcMode === 'remake' || currRealmId >= 10) {
       rawKeyStats = 0;
       keyGiftBonus = 0;
       document.getElementById("key1Subtext").innerText = `+0.00x Gift | +0.0 Stats`;
       document.getElementById("key2Subtext").innerText = `+0.00x Gift | +0.0 Stats`;
     } else {
-      document.getElementById("key1Subtext").innerText = `+${k1Gift.toFixed(2)}x Gift | +${k1Stats.toFixed(1)} Stats`;
-      document.getElementById("key2Subtext").innerText = `+${k2Gift.toFixed(2)}x Gift | +${k2Stats.toFixed(1)} Stats`;
+      let k1Lock = k1Obj.isQuest ? "🔒 Fixed " : "";
+      let k2Lock = k2Obj.isQuest ? "🔒 Fixed " : "";
+      document.getElementById("key1Subtext").innerText = `${k1Lock}+${k1Gift.toFixed(2)}x Gift | +${k1Stats.toFixed(1)} Stats`;
+      document.getElementById("key2Subtext").innerText = `${k2Lock}+${k2Gift.toFixed(2)}x Gift | +${k2Stats.toFixed(1)} Stats`;
     }
 
-    // 3. Offerings Calculation & Subtext
+    // 3. Offerings Calculation
     const off1Name = document.getElementById("offering1").value;
     const off1Grade = document.getElementById("off1Grade").value;
     const off2Name = document.getElementById("offering2").value;
@@ -868,15 +986,16 @@
     let combinedRawStats = rawKeyStats + rawOfferingStats;
     let effectiveItemStats = Math.min(6, combinedRawStats) + 0.5 * Math.max(0, Math.min(12, combinedRawStats - 6));
     effectiveItemStats = Math.min(12, effectiveItemStats);
-
     let roundedItemStats = Math.round(effectiveItemStats);
 
-    // 4. Tribulation Detection & Bonus (+0.25)
+    // 4. Tribulation Detection & Bonus
     let tribulationActive = false;
     const selectedOfferings = [o1Obj, o2Obj, o3Obj].filter(o => o.name !== "None");
     const rareOrHigherCount = selectedOfferings.filter(o => (rarityRank[o.rarity] || 1) >= 2).length;
 
-    if (currRealmId >= 4) {
+    if (isHongmengActive) {
+      tribulationActive = true; // Hongmeng tribulation is always +0.75
+    } else if (currRealmId >= 4) {
       tribulationActive = true;
     } else if (currRealmId === 1) {
       tribulationActive = (rareOrHigherCount >= 2);
@@ -884,13 +1003,19 @@
       tribulationActive = (rareOrHigherCount >= 1);
     }
 
-    let tribulationBonus = tribulationActive ? 0.25 : 0.00;
+    let tribulationBonus = 0;
+    if (isHongmengActive) {
+      tribulationBonus = 0.75;
+    } else if (tribulationActive) {
+      tribulationBonus = 0.25;
+    }
 
     // 5. Total Realm Gift Calculation
+    let baseMultiplier = isHongmengActive ? 3.20 : 1.00;
     let offeringsGift = o1Gift + o2Gift + o3Gift;
-    let uncappedGiftMultiplier = 1.0 + pillGiftBonus + keyGiftBonus + offeringsGift + tribulationBonus;
+    let uncappedGiftMultiplier = baseMultiplier + pillGiftBonus + keyGiftBonus + offeringsGift + tribulationBonus;
 
-    const qiSpotIdx = parseInt(document.getElementById("qiSpot").value);
+    const qiSpotIdx = parseInt(qiSpotSelect.value);
     const selectedQiSpot = qiSpots[qiSpotIdx];
 
     let finalGiftMultiplier = Math.min(uncappedGiftMultiplier, selectedQiSpot.cap);
@@ -902,22 +1027,30 @@
       capWarning.style.display = "none";
     }
 
-    let tier = getFoundationTier(finalGiftMultiplier);
-    let daoBonus = (tier === "Dao") ? 5 : 0;
-    let totalStats = 2 + roundedItemStats + daoBonus;
+    let tier = getFoundationTier(finalGiftMultiplier, isHongmengActive);
+    let tierBonus = 0;
+    if (tier === "Dao") tierBonus = 5;
+    else if (tier === "Hongmeng") tierBonus = 10;
+    
+    let totalStats = 2 + roundedItemStats + tierBonus;
 
-    let maxPotentialGift = maxRealmsGifts[currRealmId] || 8.10;
+    let maxPotentialGift = maxRealmsGifts[currRealmId] || 1.00;
     let efficiencyPct = (uncappedGiftMultiplier / maxPotentialGift) * 100;
     efficiencyPct = Math.min(100, efficiencyPct);
 
     // Update UI Results
     document.getElementById("itemsStats").innerText = roundedItemStats;
-    document.getElementById("daoBonus").innerText = `+${daoBonus}`;
+    document.getElementById("daoBonus").innerText = `+${tierBonus}`;
     document.getElementById("totalStats").innerText = totalStats;
-    document.getElementById("tribulationStatus").innerText = tribulationActive ? "Active (+0.25)" : "None";
+    document.getElementById("tribulationStatus").innerText = tribulationActive ? (isHongmengActive ? "Hongmeng (+0.75)" : "Active (+0.25)") : "None";
     document.getElementById("giftMultiplier").innerText = `${finalGiftMultiplier.toFixed(2)}x`;
     document.getElementById("efficiency").innerText = `${efficiencyPct.toFixed(2)}%`;
     document.getElementById("foundationTier").innerText = tier;
+    
+    // Derived Outputs
+    document.getElementById("healthGain").innerText = `+${(finalGiftMultiplier * 7).toFixed(1)} HP`;
+    document.getElementById("qiGain").innerText = `+${(finalGiftMultiplier * 5).toFixed(1)} Qi`;
+    document.getElementById("damageGain").innerText = `+${(finalGiftMultiplier * 1.2).toFixed(2)}%`;
   }
 
   window.onload = loadItemsAndInit;
