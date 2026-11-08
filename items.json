@@ -486,6 +486,24 @@
     "isOffering":true
   },
   {
+    "name":"Jiao's Flood Calming Pearl",
+    "realmId":3,
+    "rarity":"Mythic",
+    "baseGift":0.42,
+    "baseStats":4,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
+    "name":"Black Tiger King's Wind-Iron Rings",
+    "realmId":3,
+    "rarity":"Mythic",
+    "baseGift":0.42,
+    "baseStats":4,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
     "name":"White Tiger Bone",
     "realmId":4,
     "rarity":"Epic",
