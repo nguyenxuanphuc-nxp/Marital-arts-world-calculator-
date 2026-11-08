@@ -211,7 +211,7 @@
     .stat-box p.tier-tag {
       color: #f43f5e;
       text-shadow: 0 0 8px rgba(244, 63, 94, 0.4);
-      font-size: 1.1rem; /* Added to prevent text wrapping with Chinese characters */
+      font-size: 1.1rem;
     }
 
     .auto-field {
@@ -608,13 +608,13 @@
     8: 8.38, 
     9: 8.38,
     10: 7.68,
-    11: 10.38,
-    12: 10.38,
-    13: 10.38,
-    14: 10.38,
-    15: 9.345,
-    16: 8.31,
-    17: 6.861
+    11: 8.43,
+    12: 8.43,
+    13: 8.43,
+    14: 8.43,
+    15: 7.395,
+    16: 6.36,
+    17: 4.911
   };
 
   const qiSpots = [
@@ -663,7 +663,7 @@
   let calcMode = 'standard'; // 'standard' or 'remake'
   let lastRenderedRealmId = null;
   let lastRenderedMode = null;
-  let lastRenderedHongmeng = null; // Added this missing variable
+  let lastRenderedHongmeng = null;
   let previousQiSpotIndex = 0;
 
   // ==========================================
@@ -1005,7 +1005,7 @@
     const rareOrHigherCount = selectedOfferings.filter(o => (rarityRank[o.rarity] || 1) >= 2).length;
 
     if (isHongmengActive) {
-      tribulationActive = true; // Hongmeng tribulation is always +0.75
+      tribulationActive = true; // Hongmeng tribulation is always active
     } else if (currRealmId >= 4) {
       tribulationActive = true;
     } else if (currRealmId === 1) {
@@ -1016,15 +1016,20 @@
 
     let tribulationBonus = 0;
     if (isHongmengActive) {
-      tribulationBonus = 0.75;
+      tribulationBonus = 1.00; // 0.25 base + 0.75 Hongmeng bonus
     } else if (tribulationActive) {
       tribulationBonus = 0.25;
     }
 
     // 5. Total Realm Gift Calculation
-    let baseMultiplier = isHongmengActive ? 3.20 : 1.00;
+    let baseMultiplier = 1.00; // Base is always 1.0
     let offeringsGift = o1Gift + o2Gift + o3Gift;
     let uncappedGiftMultiplier = baseMultiplier + pillGiftBonus + keyGiftBonus + offeringsGift + tribulationBonus;
+
+    // Hongmeng Minimum Floor Guarantee
+    if (isHongmengActive && uncappedGiftMultiplier < 3.20) {
+      uncappedGiftMultiplier = 3.20;
+    }
 
     const qiSpotIdx = parseInt(qiSpotSelect.value);
     const selectedQiSpot = qiSpots[qiSpotIdx];
