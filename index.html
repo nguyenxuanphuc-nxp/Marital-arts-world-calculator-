@@ -211,6 +211,7 @@
     .stat-box p.tier-tag {
       color: #f43f5e;
       text-shadow: 0 0 8px rgba(244, 63, 94, 0.4);
+      font-size: 1.1rem; /* Added to prevent text wrapping with Chinese characters */
     }
 
     .auto-field {
@@ -649,10 +650,20 @@
     "Uncommon": 1, "Rare": 2, "Epic": 3, "Legendary": 4, "Mythic": 5
   };
 
+  const tierChinese = {
+    "Common": "凡",
+    "Human": "人",
+    "Earth": "地",
+    "Heaven": "天",
+    "Dao": "道",
+    "Hongmeng": "鸿蒙"
+  };
+
   let items = [];
   let calcMode = 'standard'; // 'standard' or 'remake'
   let lastRenderedRealmId = null;
   let lastRenderedMode = null;
+  let lastRenderedHongmeng = null; // Added this missing variable
   let previousQiSpotIndex = 0;
 
   // ==========================================
@@ -1045,7 +1056,9 @@
     document.getElementById("tribulationStatus").innerText = tribulationActive ? (isHongmengActive ? "Hongmeng (+0.75)" : "Active (+0.25)") : "None";
     document.getElementById("giftMultiplier").innerText = `${finalGiftMultiplier.toFixed(2)}x`;
     document.getElementById("efficiency").innerText = `${efficiencyPct.toFixed(2)}%`;
-    document.getElementById("foundationTier").innerText = tier;
+    
+    // Added Chinese character to tier display
+    document.getElementById("foundationTier").innerText = `${tier} (${tierChinese[tier]})`;
     
     // Derived Outputs
     document.getElementById("healthGain").innerText = `+${(finalGiftMultiplier * 7).toFixed(1)} HP`;
