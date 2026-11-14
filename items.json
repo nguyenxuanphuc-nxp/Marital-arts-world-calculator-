@@ -974,9 +974,9 @@
   {
     "name":"The Lamp Mother's Wick",
     "realmId":12,
-    "rarity":"Mythic",
-    "baseGift":0.46,
-    "baseStats":4,
+    "rarity":"Legendary",
+    "baseGift":0.32,
+    "baseStats":2,
     "isKey":false,
     "isOffering":true
   },
@@ -992,9 +992,9 @@
   {
     "name":"Rootward Amber",
     "realmId":13,
-    "rarity":"Legendary",
-    "baseGift":0.32,
-    "baseStats":2,
+    "rarity":"Epic",
+    "baseGift":0.22,
+    "baseStats":1,
     "isKey":false,
     "isOffering":true
   },
