@@ -1089,6 +1089,15 @@
     "isOffering":true
   },
   {
+    "name":"Abyssal Narce",
+    "realmId":15,
+    "rarity":"Legendary",
+    "baseGift":0.32,
+    "baseStats":2,
+    "isKey":false,
+    "isOffering":true
+  },
+  {
     "name":"A Plate of the Unyielding Armour",
     "realmId":16,
     "rarity":"Mythic",
